@@ -1,0 +1,560 @@
+size : 10, seed : 0
+Seed : 0
+optimal value is 88.5791
+All variable in opt solution of Master is Integer value
+pricing running time : 0.19
+pricing running Num  : 135
+avg sub running time : 1.374462e-03
+ 
+size : 10, seed : 1
+Seed : 1
+optimal value is 88.5791
+All variable in opt solution of Master is Integer value
+pricing running time : 0.19
+pricing running Num  : 135
+avg sub running time : 1.419458e-03
+ 
+size : 10, seed : 2
+Seed : 2
+optimal value is 74.4296
+All variable in opt solution of Master is Integer value
+pricing running time : 0.18
+pricing running Num  : 117
+avg sub running time : 1.571013e-03
+ 
+size : 10, seed : 3
+Seed : 3
+optimal value is 71.2271
+All variable in opt solution of Master is Integer value
+pricing running time : 0.14
+pricing running Num  : 111
+avg sub running time : 1.262259e-03
+ 
+size : 10, seed : 4
+Seed : 4
+optimal value is 65.1352
+All variable in opt solution of Master is Integer value
+pricing running time : 0.17
+pricing running Num  : 121
+avg sub running time : 1.427857e-03
+ 
+size : 10, seed : 5
+Seed : 5
+optimal value is 82.1220
+All variable in opt solution of Master is Integer value
+pricing running time : 0.16
+pricing running Num  : 125
+avg sub running time : 1.296553e-03
+ 
+size : 10, seed : 6
+Seed : 6
+optimal value is 83.8217
+All variable in opt solution of Master is Integer value
+pricing running time : 0.12
+pricing running Num  : 107
+avg sub running time : 1.126898e-03
+ 
+size : 10, seed : 7
+Seed : 7
+optimal value is 74.6239
+All variable in opt solution of Master is Integer value
+pricing running time : 0.20
+pricing running Num  : 103
+avg sub running time : 1.926464e-03
+ 
+size : 10, seed : 8
+Seed : 8
+optimal value is 111.8149
+All variable in opt solution of Master is Integer value
+pricing running time : 0.15
+pricing running Num  : 121
+avg sub running time : 1.201131e-03
+ 
+size : 10, seed : 9
+Seed : 9
+optimal value is 77.4939
+All variable in opt solution of Master is Integer value
+pricing running time : 0.15
+pricing running Num  : 105
+avg sub running time : 1.416758e-03
+ 
+size : 20, seed : 0
+Seed : 0
+optimal value is 161.6944
+All variable in opt solution of Master is Integer value
+pricing running time : 0.38
+pricing running Num  : 262
+avg sub running time : 1.449291e-03
+ 
+size : 20, seed : 1
+Seed : 1
+optimal value is 161.6944
+All variable in opt solution of Master is Integer value
+pricing running time : 0.38
+pricing running Num  : 262
+avg sub running time : 1.466375e-03
+ 
+size : 20, seed : 2
+Seed : 2
+optimal value is 152.2518
+All variable in opt solution of Master is Integer value
+pricing running time : 0.38
+pricing running Num  : 327
+avg sub running time : 1.164038e-03
+ 
+size : 20, seed : 3
+Seed : 3
+optimal value is 139.9018
+All variable in opt solution of Master is Integer value
+pricing running time : 0.41
+pricing running Num  : 323
+avg sub running time : 1.276015e-03
+ 
+size : 20, seed : 4
+Seed : 4
+optimal value is 134.7511
+All variable in opt solution of Master is Integer value
+pricing running time : 0.40
+pricing running Num  : 278
+avg sub running time : 1.446441e-03
+ 
+size : 20, seed : 5
+Seed : 5
+optimal value is 150.2798
+All variable in opt solution of Master is Integer value
+pricing running time : 0.54
+pricing running Num  : 322
+avg sub running time : 1.679854e-03
+ 
+size : 20, seed : 6
+Seed : 6
+optimal value is 158.6094
+All variable in opt solution of Master is Integer value
+pricing running time : 0.38
+pricing running Num  : 317
+avg sub running time : 1.193823e-03
+ 
+size : 20, seed : 7
+Seed : 7
+optimal value is 150.2743
+All variable in opt solution of Master is Integer value
+pricing running time : 0.44
+pricing running Num  : 319
+avg sub running time : 1.385639e-03
+ 
+size : 20, seed : 8
+Seed : 8
+optimal value is 158.0188
+All variable in opt solution of Master is Integer value
+pricing running time : 0.50
+pricing running Num  : 314
+avg sub running time : 1.593557e-03
+ 
+size : 20, seed : 9
+Seed : 9
+optimal value is 142.2464
+All variable in opt solution of Master is Integer value
+pricing running time : 0.39
+pricing running Num  : 315
+avg sub running time : 1.230158e-03
+ 
+size : 30, seed : 0
+Seed : 0
+optimal value is 237.6059
+All variable in opt solution of Master is Integer value
+pricing running time : 0.65
+pricing running Num  : 552
+avg sub running time : 1.179999e-03
+ 
+size : 30, seed : 1
+Seed : 1
+optimal value is 237.6059
+All variable in opt solution of Master is Integer value
+pricing running time : 0.68
+pricing running Num  : 552
+avg sub running time : 1.235259e-03
+ 
+size : 30, seed : 2
+Seed : 2
+optimal value is 212.7393
+All variable in opt solution of Master is Integer value
+pricing running time : 0.83
+pricing running Num  : 586
+avg sub running time : 1.412741e-03
+ 
+size : 30, seed : 3
+Seed : 3
+optimal value is 214.8555
+All variable in opt solution of Master is Integer value
+pricing running time : 0.67
+pricing running Num  : 531
+avg sub running time : 1.255626e-03
+ 
+size : 30, seed : 4
+Seed : 4
+optimal value is 206.3438
+All variable in opt solution of Master is Integer value
+pricing running time : 0.88
+pricing running Num  : 595
+avg sub running time : 1.470753e-03
+ 
+size : 30, seed : 5
+Seed : 5
+optimal value is 227.7709
+All variable in opt solution of Master is Integer value
+pricing running time : 0.92
+pricing running Num  : 671
+avg sub running time : 1.375893e-03
+ 
+size : 30, seed : 6
+Seed : 6
+optimal value is 212.7262
+All variable in opt solution of Master is Integer value
+pricing running time : 0.84
+pricing running Num  : 661
+avg sub running time : 1.271667e-03
+ 
+size : 30, seed : 7
+Seed : 7
+optimal value is 217.3701
+All variable in opt solution of Master is Integer value
+pricing running time : 0.95
+pricing running Num  : 622
+avg sub running time : 1.525211e-03
+ 
+size : 30, seed : 8
+Seed : 8
+optimal value is 231.3354
+All variable in opt solution of Master is Integer value
+pricing running time : 0.87
+pricing running Num  : 644
+avg sub running time : 1.344210e-03
+ 
+size : 30, seed : 9
+Seed : 9
+optimal value is 195.3552
+All variable in opt solution of Master is Integer value
+pricing running time : 0.68
+pricing running Num  : 551
+avg sub running time : 1.243017e-03
+ 
+size : 40, seed : 0
+Seed : 0
+optimal value is 311.8235
+All variable in opt solution of Master is Integer value
+pricing running time : 1.17
+pricing running Num  : 803
+avg sub running time : 1.456710e-03
+ 
+size : 40, seed : 1
+Seed : 1
+optimal value is 311.8235
+All variable in opt solution of Master is Integer value
+pricing running time : 1.13
+pricing running Num  : 803
+avg sub running time : 1.410181e-03
+ 
+size : 40, seed : 2
+Seed : 2
+optimal value is 276.0004
+All variable in opt solution of Master is Integer value
+pricing running time : 1.36
+pricing running Num  : 874
+avg sub running time : 1.551362e-03
+ 
+size : 40, seed : 3
+Seed : 3
+optimal value is 286.8971
+All variable in opt solution of Master is Integer value
+pricing running time : 1.14
+pricing running Num  : 774
+avg sub running time : 1.468080e-03
+ 
+size : 40, seed : 4
+Seed : 4
+optimal value is 273.9485
+All variable in opt solution of Master is Integer value
+pricing running time : 1.21
+pricing running Num  : 806
+avg sub running time : 1.506209e-03
+ 
+size : 40, seed : 5
+Seed : 5
+optimal value is 277.5807
+All variable in opt solution of Master is Integer value
+pricing running time : 1.32
+pricing running Num  : 897
+avg sub running time : 1.474504e-03
+ 
+size : 40, seed : 6
+Seed : 6
+optimal value is 284.8689
+All variable in opt solution of Master is Integer value
+pricing running time : 1.25
+pricing running Num  : 836
+avg sub running time : 1.500739e-03
+ 
+size : 40, seed : 7
+Seed : 7
+optimal value is 279.2319
+All variable in opt solution of Master is Integer value
+pricing running time : 1.24
+pricing running Num  : 820
+avg sub running time : 1.510718e-03
+ 
+size : 40, seed : 8
+Seed : 8
+optimal value is 286.3934
+All variable in opt solution of Master is Integer value
+pricing running time : 1.15
+pricing running Num  : 764
+avg sub running time : 1.508740e-03
+ 
+size : 40, seed : 9
+Seed : 9
+optimal value is 258.7043
+All variable in opt solution of Master is Integer value
+pricing running time : 1.20
+pricing running Num  : 765
+avg sub running time : 1.572957e-03
+ 
+size : 50, seed : 0
+Seed : 0
+optimal value is 377.6239
+All variable in opt solution of Master is Integer value
+pricing running time : 1.94
+pricing running Num  : 1130
+avg sub running time : 1.715058e-03
+ 
+size : 50, seed : 1
+Seed : 1
+optimal value is 377.6239
+All variable in opt solution of Master is Integer value
+pricing running time : 1.99
+pricing running Num  : 1130
+avg sub running time : 1.762822e-03
+ 
+size : 50, seed : 2
+Seed : 2
+optimal value is 328.3109
+All variable in opt solution of Master is Integer value
+pricing running time : 1.66
+pricing running Num  : 1156
+avg sub running time : 1.431882e-03
+ 
+size : 50, seed : 3
+Seed : 3
+optimal value is 336.8851
+All variable in opt solution of Master is Integer value
+pricing running time : 1.65
+pricing running Num  : 967
+avg sub running time : 1.703190e-03
+ 
+size : 50, seed : 4
+Seed : 4
+optimal value is 355.8104
+All variable in opt solution of Master is Integer value
+pricing running time : 1.65
+pricing running Num  : 1135
+avg sub running time : 1.453360e-03
+ 
+size : 50, seed : 5
+Seed : 5
+optimal value is 328.7832
+All variable in opt solution of Master is Integer value
+pricing running time : 1.82
+pricing running Num  : 1082
+avg sub running time : 1.685288e-03
+ 
+size : 50, seed : 6
+Seed : 6
+optimal value is 351.5448
+All variable in opt solution of Master is Integer value
+pricing running time : 1.59
+pricing running Num  : 1156
+avg sub running time : 1.378041e-03
+ 
+size : 50, seed : 7
+Seed : 7
+optimal value is 333.8695
+All variable in opt solution of Master is Integer value
+pricing running time : 1.75
+pricing running Num  : 1311
+avg sub running time : 1.337726e-03
+ 
+size : 50, seed : 8
+Seed : 8
+optimal value is 360.5913
+All variable in opt solution of Master is Integer value
+pricing running time : 1.70
+pricing running Num  : 1169
+avg sub running time : 1.452717e-03
+ 
+size : 50, seed : 9
+Seed : 9
+optimal value is 330.2467
+All variable in opt solution of Master is Integer value
+pricing running time : 1.58
+pricing running Num  : 1136
+avg sub running time : 1.391607e-03
+ 
+size : 5, seed : 0
+Seed : 0
+optimal value is 64.4896
+All variable in opt solution of Master is Integer value
+pricing running time : 0.06
+pricing running Num  : 41
+avg sub running time : 1.440781e-03
+ 
+size : 5, seed : 1
+Seed : 1
+optimal value is 64.4896
+All variable in opt solution of Master is Integer value
+pricing running time : 0.06
+pricing running Num  : 41
+avg sub running time : 1.430099e-03
+ 
+size : 5, seed : 2
+Seed : 2
+optimal value is 40.9248
+All variable in opt solution of Master is Integer value
+pricing running time : 0.05
+pricing running Num  : 39
+avg sub running time : 1.221388e-03
+ 
+size : 5, seed : 3
+Seed : 3
+optimal value is 32.9653
+All variable in opt solution of Master is Integer value
+pricing running time : 0.05
+pricing running Num  : 37
+avg sub running time : 1.373993e-03
+ 
+size : 5, seed : 4
+Seed : 4
+optimal value is 39.1045
+All variable in opt solution of Master is Integer value
+pricing running time : 0.07
+pricing running Num  : 46
+avg sub running time : 1.495429e-03
+ 
+size : 5, seed : 5
+Seed : 5
+optimal value is 68.0418
+All variable in opt solution of Master is Integer value
+pricing running time : 0.07
+pricing running Num  : 47
+avg sub running time : 1.405112e-03
+ 
+size : 5, seed : 6
+Seed : 6
+optimal value is 47.3052
+All variable in opt solution of Master is Integer value
+pricing running time : 0.06
+pricing running Num  : 39
+avg sub running time : 1.560511e-03
+ 
+size : 5, seed : 7
+Seed : 7
+optimal value is 57.6559
+All variable in opt solution of Master is Integer value
+pricing running time : 0.06
+pricing running Num  : 39
+avg sub running time : 1.431563e-03
+ 
+size : 5, seed : 8
+Seed : 8
+optimal value is 54.1469
+All variable in opt solution of Master is Integer value
+pricing running time : 0.06
+pricing running Num  : 43
+avg sub running time : 1.341620e-03
+ 
+size : 5, seed : 9
+Seed : 9
+optimal value is 51.3685
+All variable in opt solution of Master is Integer value
+pricing running time : 0.05
+pricing running Num  : 39
+avg sub running time : 1.256931e-03
+ 
+size : 60, seed : 0
+Seed : 0
+optimal value is 440.3224
+All variable in opt solution of Master is Integer value
+pricing running time : 2.39
+pricing running Num  : 1544
+avg sub running time : 1.546794e-03
+ 
+size : 60, seed : 1
+Seed : 1
+optimal value is 440.3224
+All variable in opt solution of Master is Integer value
+pricing running time : 2.39
+pricing running Num  : 1544
+avg sub running time : 1.547464e-03
+ 
+size : 60, seed : 2
+Seed : 2
+optimal value is 401.6737
+All variable in opt solution of Master is Integer value
+pricing running time : 2.30
+pricing running Num  : 1529
+avg sub running time : 1.505248e-03
+ 
+size : 60, seed : 3
+Seed : 3
+optimal value is 397.0154
+All variable in opt solution of Master is Integer value
+pricing running time : 2.20
+pricing running Num  : 1451
+avg sub running time : 1.516988e-03
+ 
+size : 60, seed : 4
+Seed : 4
+optimal value is 420.8077
+All variable in opt solution of Master is Integer value
+pricing running time : 2.20
+pricing running Num  : 1481
+avg sub running time : 1.482775e-03
+ 
+size : 60, seed : 5
+Seed : 5
+optimal value is 390.5675
+All variable in opt solution of Master is Integer value
+pricing running time : 2.79
+pricing running Num  : 1559
+avg sub running time : 1.790972e-03
+ 
+size : 60, seed : 6
+Seed : 6
+optimal value is 423.7091
+All variable in opt solution of Master is Integer value
+pricing running time : 1.86
+pricing running Num  : 1280
+avg sub running time : 1.451231e-03
+ 
+size : 60, seed : 7
+Seed : 7
+optimal value is 388.6778
+All variable in opt solution of Master is Integer value
+pricing running time : 2.30
+pricing running Num  : 1446
+avg sub running time : 1.589673e-03
+ 
+size : 60, seed : 8
+Seed : 8
+optimal value is 427.1518
+All variable in opt solution of Master is Integer value
+pricing running time : 2.46
+pricing running Num  : 1736
+avg sub running time : 1.416226e-03
+ 
+size : 60, seed : 9
+Seed : 9
+optimal value is 395.4966
+All variable in opt solution of Master is Integer value
+pricing running time : 2.31
+pricing running Num  : 1473
+avg sub running time : 1.565077e-03
+ 

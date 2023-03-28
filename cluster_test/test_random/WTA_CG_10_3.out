@@ -1,0 +1,2433 @@
+Start main function
+
+ ----- start test WTA by CG ----- 
+Create empty WTA with size W: 3, T:3 
+ Need Initialized
+Init the problem by random 
+Initialize by random, seed = 3
+->	W0 	W1 	W2 	W3 	W4 	W5 	W6 	W7 	W8 	W9 	value 
+T0	0.60 	0.65 	0.83 	0.60 	0.70 	0.61 	0.76 	0.75 	0.66 	0.88 	46.00 
+T1	0.74 	0.71 	0.83 	0.67 	0.61 	0.86 	0.67 	0.63 	0.76 	0.71 	35.00 
+T2	0.65 	0.62 	0.63 	0.80 	0.73 	0.67 	0.60 	0.82 	0.74 	0.71 	43.00 
+T3	0.79 	0.77 	0.65 	0.65 	0.72 	0.64 	0.66 	0.89 	0.74 	0.88 	40.00 
+T4	0.88 	0.64 	0.66 	0.86 	0.78 	0.61 	0.73 	0.74 	0.80 	0.77 	25.00 
+T5	0.85 	0.86 	0.71 	0.78 	0.77 	0.74 	0.86 	0.70 	0.75 	0.84 	65.00 
+T6	0.60 	0.77 	0.69 	0.61 	0.68 	0.75 	0.84 	0.76 	0.87 	0.85 	97.00 
+T7	0.68 	0.76 	0.83 	0.87 	0.65 	0.70 	0.73 	0.82 	0.65 	0.72 	26.00 
+T8	0.61 	0.66 	0.67 	0.86 	0.63 	0.67 	0.83 	0.75 	0.85 	0.67 	26.00 
+T9	0.73 	0.86 	0.66 	0.62 	0.74 	0.83 	0.80 	0.78 	0.64 	0.77 	89.00 
+ --- Start Initialize the Root Note ---
+
+ --- Start solve the Root Note ---
+enter SolveRootNode
+Running HiGHS 1.3.1 [date: 2023-01-06, git hash: 14c0f2256-dirty]
+Copyright (c) 2022 ERGO-Code under MIT licence terms
+
+----- Now Initialize master's HIGHS --- 
+Now the Scene Pool has : 10
+N_rows : 20N_cols : 10column index :  0  2  4  6  8  10  12  14  16  18  20 
+nz index : 	0	10	1	11	2	12	3	13	4	14	5	15	6	16	7	17	8	18	9	19
+nz val : 	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00	1.00
+
+---- Highs of Master Problem has been Initialized ---- 
+--- Now start Column Generation --- 
+Now solve Mater Problem
+scene pool size : 10
+
+
+------------- Start Highs ---------------------Presolving model
+0 rows, 0 cols, 0 nonzeros
+0 rows, 0 cols, 0 nonzeros
+Presolve : Reductions: rows 0(-20); columns 0(-10); elements 0(-20) - Reduced to empty
+Solving the original LP from the solution after postsolve
+Model   status      : Optimal
+Objective value     :  1.2478456950e+02
+HiGHS run time      :          0.00
+Model status: Optimal
+Simplex iteration count: 0
+Objective function value: 124.785
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 0; value = 1; dual = 0; status: Basic
+Column 1; value = 1; dual = 0; status: Basic
+Column 2; value = 1; dual = 0; status: Basic
+Column 3; value = 1; dual = 0; status: Basic
+Column 4; value = 1; dual = 0; status: Basic
+Column 5; value = 1; dual = 0; status: Basic
+Column 6; value = 1; dual = 0; status: Basic
+Column 7; value = 1; dual = 0; status: Basic
+Column 8; value = 1; dual = 0; status: Basic
+Column 9; value = 1; dual = 0; status: Basic
+ HIGHS use 2.017260e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+There are 	 10 Scenes in the Scene Pool. 
+Target 0 : 0 
+Target 1 : 1 
+Target 2 : 2 
+Target 3 : 3 
+Target 4 : 4 
+Target 5 : 5 
+Target 6 : 6 
+Target 7 : 7 
+Target 8 : 8 
+Target 9 : 9 
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -0.00
+dual 1 : -0.00
+dual 2 : -0.00
+dual 3 : -0.00
+dual 4 : -0.00
+dual 5 : -0.00
+dual 6 : -0.00
+dual 7 : -0.00
+dual 8 : -0.00
+dual 9 : -0.00
+dual 10 : 18.34
+dual 11 : 10.15
+dual 12 : 15.99
+dual 13 : 13.81
+dual 14 : 5.48
+dual 15 : 17.18
+dual 16 : 15.20
+dual 17 : 4.63
+dual 18 : 3.88
+dual 19 : 20.13
+print dual before solve the subproblem
+-0.00 -0.00 -0.00 -0.00 -0.00 -0.00 -0.00 -0.00 -0.00 -0.00 18.34 10.15 15.99 13.81 5.48 17.18 15.20 4.63 3.88 20.13 
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value: -1.8344522355e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 4.351139e-03
+Target 0 : 4 6 7 
+opt_val : -1.834452e+01, real_redcost : -1.753251e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value: -1.0151464482e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.600784e-04
+Target 1 : 2 5 
+opt_val : -1.015146e+01, real_redcost : -9.312438e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value: -1.5990307505e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.761551e-04
+Target 2 : 0 5 9 
+opt_val : -1.599031e+01, real_redcost : -1.457300e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value: -1.3805414708e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 5.950928e-04
+Target 3 : 7 9 
+opt_val : -1.380541e+01, real_redcost : -1.326702e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value: -5.4763500868e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 5.838871e-04
+Target 4 : 0 3 
+opt_val : -5.476350e+00, real_redcost : -5.074590e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -1.7177390124e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.079674e-04
+Target 5 : 4 5 8 
+opt_val : -1.717739e+01, real_redcost : -1.619611e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value: -1.5197437997e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 5.979538e-04
+Target 6 : 1 5 7 
+opt_val : -1.519744e+01, real_redcost : -1.386529e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value: -4.6253629831e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 5.850792e-04
+Target 7 : 2 3 
+opt_val : -4.625363e+00, real_redcost : -4.038670e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value: -3.8836357254e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 5.898476e-04
+Target 8 : 3 8 
+opt_val : -3.883636e+00, real_redcost : -3.339507e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value: -2.0132047562e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 5.931854e-04
+Target 9 : 0 2 4 
+opt_val : -2.013205e+01, real_redcost : -1.805268e+01
+---- This target doesn't satisfied -----
+
+In this pricing step we gain 10 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 20
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+          9     1.2478456950e+02 Pr: 0(0) 0s
+Model   status      : Optimal
+Simplex   iterations: 9
+Objective value     :  1.2478456950e+02
+HiGHS run time      :          0.00
+Model status: Optimal
+Simplex iteration count: 9
+Objective function value: 124.785
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 0; value = 1; dual = 0; status: Basic
+Column 1; value = 1; dual = 0; status: Basic
+Column 2; value = 1; dual = 0; status: Basic
+Column 3; value = 1; dual = 0; status: Basic
+Column 4; value = 1; dual = 0; status: Basic
+Column 5; value = 1; dual = 0; status: Basic
+Column 6; value = 1; dual = 0; status: Basic
+Column 7; value = 1; dual = 0; status: Basic
+Column 8; value = 1; dual = 0; status: Basic
+Column 9; value = 1; dual = 0; status: Basic
+ HIGHS use 2.489328e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -13.56
+dual 1 : -0.00
+dual 2 : -0.00
+dual 3 : -13.32
+dual 4 : -21.80
+dual 5 : -9.31
+dual 6 : -0.00
+dual 7 : -9.28
+dual 8 : -0.00
+dual 9 : -17.31
+dual 10 : 31.90
+dual 11 : 10.15
+dual 12 : 15.99
+dual 13 : 27.13
+dual 14 : 27.28
+dual 15 : 26.49
+dual 16 : 15.20
+dual 17 : 13.91
+dual 18 : 3.88
+dual 19 : 37.44
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value: -3.1899560483e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.270409e-04
+Target 0 : 1 2 8 
+opt_val : -3.189956e+01, real_redcost : -3.099148e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value: -1.0151464482e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 5.989075e-04
+Target 1 : 2 5 8 
+opt_val : -1.015146e+01, real_redcost : -6.376772e-01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value: -1.5990307505e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.010532e-04
+Target 2 : 1 2 6 
+opt_val : -1.599031e+01, real_redcost : -1.355205e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value: -2.7128300341e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 5.910397e-04
+Target 3 : 1 2 5 6 9 
+opt_val : -2.712830e+01, real_redcost : -4.634889e-01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value: -2.7279683756e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 5.948544e-04
+Target 4 : 1 8 
+opt_val : -2.727968e+01, real_redcost : -2.548238e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -2.6489828255e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 5.970001e-04
+Target 5 : 2 5 7 8 
+opt_val : -2.648983e+01, real_redcost : -7.520515e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value: -1.5197437997e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.240772e-04
+Target 6 : 1 2 6 8 
+opt_val : -1.519744e+01, real_redcost : -1.505971e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value: -1.3909579100e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.189346e-04
+Target 7 : 1 6 8 
+opt_val : -1.390958e+01, real_redcost : -1.332673e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value: -3.8836357254e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.120205e-04
+Target 8 : 1 2 8 
+opt_val : -3.883636e+00, real_redcost : -3.454568e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value: -3.7437737323e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.010532e-04
+Target 9 : 2 5 8 9 
+opt_val : -3.743774e+01, real_redcost : -1.039454e+01
+---- This target doesn't satisfied -----
+
+In this pricing step we gain 10 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 30
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+          4     1.2478456950e+02 Pr: 0(0) 0s
+Model   status      : Optimal
+Simplex   iterations: 4
+Objective value     :  1.2478456950e+02
+HiGHS run time      :          0.00
+Model status: Optimal
+Simplex iteration count: 4
+Objective function value: 124.785
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 0; value = 1; dual = 0; status: Basic
+Column 1; value = 1; dual = 0; status: Basic
+Column 2; value = 1; dual = 0; status: Basic
+Column 3; value = 1; dual = 0; status: Basic
+Column 4; value = 1; dual = 0; status: Basic
+Column 5; value = 1; dual = 0; status: Basic
+Column 6; value = 1; dual = 0; status: Basic
+Column 7; value = 1; dual = 0; status: Basic
+Column 8; value = 1; dual = 0; status: Basic
+Column 9; value = 1; dual = 0; status: Basic
+ HIGHS use 2.739906e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -10.80
+dual 1 : -3.45
+dual 2 : -0.00
+dual 3 : -18.83
+dual 4 : -24.56
+dual 5 : -12.77
+dual 6 : -17.15
+dual 7 : -14.79
+dual 8 : -24.78
+dual 9 : -17.31
+dual 10 : 29.15
+dual 11 : 13.61
+dual 12 : 15.99
+dual 13 : 32.64
+dual 14 : 30.03
+dual 15 : 29.94
+dual 16 : 32.35
+dual 17 : 19.42
+dual 18 : 28.67
+dual 19 : 37.44
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value: -2.6129502057e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.699562e-04
+Target 0 : 1 2 
+opt_val : -2.612950e+01, real_redcost : -2.299003e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value: -1.1562012702e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.020069e-04
+Target 1 : 1 2 
+opt_val : -1.156201e+01, real_redcost : -8.430621e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value: -9.5006043551e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.507998e-03
+Target 2 : 1 2 
+opt_val : -9.500604e+00, real_redcost : -6.421906e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value: -2.9119278656e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.491444e-04
+Target 3 : 1 2 
+opt_val : -2.911928e+01, real_redcost : -2.593645e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value: -3.0034233231e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.040501e-04
+Target 4 : 0 1 2 
+opt_val : -3.003423e+01, real_redcost : -1.542660e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -2.6240557012e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 8.549690e-04
+Target 5 : 1 2 
+opt_val : -2.624056e+01, real_redcost : -2.395108e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value: -2.7666310484e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.109974e-04
+Target 6 : 1 2 
+opt_val : -2.766631e+01, real_redcost : -2.204814e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value: -1.7756703711e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.030964e-04
+Target 7 : 1 2 
+opt_val : -1.775670e+01, real_redcost : -1.490462e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value: -2.5933174550e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.828308e-04
+Target 8 : 1 2 
+opt_val : -2.593317e+01, real_redcost : -2.233872e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value: -3.7437737323e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.050037e-04
+Target 9 : 0 1 2 6 
+opt_val : -3.743774e+01, real_redcost : -5.812445e+00
+---- This target doesn't satisfied -----
+
+In this pricing step we gain 10 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 40
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+          7     1.2478456950e+02 Pr: 0(0) 0s
+Model   status      : Optimal
+Simplex   iterations: 7
+Objective value     :  1.2478456950e+02
+HiGHS run time      :          0.00
+Model status: Optimal
+Simplex iteration count: 7
+Objective function value: 124.785
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 0; value = 1; dual = 0; status: Basic
+Column 1; value = 1; dual = -6.07372; status: At upper bound
+Column 2; value = 1; dual = 0; status: Basic
+Column 3; value = 1; dual = -23.9129; status: At upper bound
+Column 4; value = 1; dual = 0; status: Basic
+Column 5; value = 1; dual = 0; status: Basic
+Column 6; value = 1; dual = 0; status: Basic
+Column 7; value = 1; dual = -14.7933; status: At upper bound
+Column 8; value = 1; dual = 0; status: Basic
+Column 9; value = 1; dual = 0; status: Basic
+ HIGHS use 3.043652e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -22.65
+dual 1 : -23.28
+dual 2 : -15.01
+dual 3 : -3.82
+dual 4 : -21.39
+dual 5 : -23.65
+dual 6 : -29.94
+dual 7 : -0.00
+dual 8 : -1.79
+dual 9 : -41.00
+dual 10 : 40.99
+dual 11 : 39.50
+dual 12 : 31.00
+dual 13 : 41.54
+dual 14 : 26.87
+dual 15 : 40.83
+dual 16 : 45.14
+dual 17 : 19.42
+dual 18 : 5.68
+dual 19 : 61.13
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value: -4.0991907053e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.379055e-04
+Target 0 : 2 7 8 
+opt_val : -4.099191e+01, real_redcost : -2.354701e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value: -3.9504282879e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.119179e-04
+Target 1 : 3 7 8 
+opt_val : -3.950428e+01, real_redcost : -3.287063e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value: -3.1002708584e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.040501e-04
+Target 2 : 3 7 8 
+opt_val : -3.100271e+01, real_redcost : -2.498135e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value: -4.1537876314e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.090569e-04
+Target 3 : 3 7 8 
+opt_val : -4.153788e+01, real_redcost : -3.550928e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value: -2.6868728197e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.050037e-04
+Target 4 : 3 7 
+opt_val : -2.686873e+01, real_redcost : -2.216164e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -3.8907160463e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.529591e-04
+Target 5 : 7 8 
+opt_val : -3.890716e+01, real_redcost : -3.411340e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value: -4.5135817036e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.162094e-04
+Target 6 : 3 7 8 
+opt_val : -4.513582e+01, real_redcost : -3.833786e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value: -1.9418678050e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.150173e-04
+Target 7 : 3 7 8 
+opt_val : -1.941868e+01, real_redcost : -1.359094e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value: -3.4767998087e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.307861e-04
+Target 8 : 7 8 
+opt_val : -3.476800e+00, real_redcost : -2.904397e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value: -5.9154121344e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.300709e-04
+Target 9 : 7 8 
+opt_val : -5.915412e+01, real_redcost : -5.242606e+01
+---- This target doesn't satisfied -----
+
+In this pricing step we gain 10 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 50
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+         18     1.2478456950e+02 Pr: 0(0) 0s
+Model   status      : Optimal
+Simplex   iterations: 18
+Objective value     :  1.2478456950e+02
+HiGHS run time      :          0.00
+Model status: Optimal
+Simplex iteration count: 18
+Objective function value: 124.785
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 0; value = 1; dual = 0; status: Basic
+Column 1; value = 1; dual = 0; status: Basic
+Column 2; value = 1; dual = 0; status: Basic
+Column 3; value = 1; dual = -12.0162; status: At upper bound
+Column 4; value = 1; dual = 0; status: Basic
+Column 5; value = 1; dual = 0; status: Basic
+Column 6; value = 1; dual = 0; status: Basic
+Column 7; value = 1; dual = -6.07835; status: At upper bound
+Column 8; value = 1; dual = 0; status: Basic
+Column 9; value = 1; dual = 0; status: Basic
+ HIGHS use 3.429651e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -17.28
+dual 1 : -9.88
+dual 2 : -23.05
+dual 3 : -10.35
+dual 4 : -11.20
+dual 5 : -5.28
+dual 6 : -24.57
+dual 7 : -23.28
+dual 8 : -5.00
+dual 9 : -15.06
+dual 10 : 35.63
+dual 11 : 20.03
+dual 12 : 39.04
+dual 13 : 36.17
+dual 14 : 16.67
+dual 15 : 22.46
+dual 16 : 39.77
+dual 17 : 33.98
+dual 18 : 8.88
+dual 19 : 35.19
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value: -2.4526425863e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.096010e-03
+Target 0 : 5 8 
+opt_val : -2.452643e+01, real_redcost : -1.934514e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value: -1.1862005406e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.488924e-03
+Target 1 : 5 8 
+opt_val : -1.186201e+01, real_redcost : -8.560591e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value: -3.9038341832e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.166821e-03
+Target 2 : 3 4 5 8 
+opt_val : -3.903834e+01, real_redcost : -7.017368e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value: -2.5724963849e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.329184e-03
+Target 3 : 5 8 
+opt_val : -2.572496e+01, real_redcost : -2.208925e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value: -6.6787219655e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.988049e-04
+Target 4 : 8 
+opt_val : -6.678722e+00, real_redcost : -6.678722e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -9.7560040265e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.026869e-03
+Target 5 : 5 8 
+opt_val : -9.756004e+00, real_redcost : -7.891959e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value: -2.9088123329e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 2.686977e-03
+Target 6 : 5 8 
+opt_val : -2.908812e+01, real_redcost : -2.642188e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value: -3.0585469325e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.612902e-03
+Target 7 : 1 3 5 8 
+opt_val : -3.058547e+01, real_redcost : -3.390377e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.659870e-03
+Target 8 : 8 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value: -2.4814553180e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 2.484798e-03
+Target 9 : 5 8 
+opt_val : -2.481455e+01, real_redcost : -1.936753e+01
+---- This target doesn't satisfied -----
+
+In this pricing step we gain 9 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 59
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+          8     1.2478456950e+02 Pr: 0(0) 0s
+Model   status      : Optimal
+Simplex   iterations: 8
+Objective value     :  1.2478456950e+02
+HiGHS run time      :          0.00
+Model status: Optimal
+Simplex iteration count: 8
+Objective function value: 124.785
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 0; value = 1; dual = 0; status: Basic
+Column 1; value = 1; dual = 0; status: Basic
+Column 2; value = 1; dual = 0; status: Basic
+Column 3; value = 1; dual = 0; status: Basic
+Column 4; value = 1; dual = 0; status: Basic
+Column 5; value = 1; dual = -2.81951; status: At upper bound
+Column 6; value = 1; dual = 0; status: Basic
+Column 7; value = 1; dual = -17.5186; status: At upper bound
+Column 8; value = 1; dual = 0; status: Basic
+Column 9; value = 1; dual = 0; status: Basic
+ HIGHS use 3.854513e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -11.00
+dual 1 : -9.88
+dual 2 : -21.41
+dual 3 : -10.35
+dual 4 : -15.96
+dual 5 : -11.56
+dual 6 : -15.87
+dual 7 : -10.20
+dual 8 : -16.44
+dual 9 : -13.42
+dual 10 : 29.34
+dual 11 : 20.03
+dual 12 : 37.40
+dual 13 : 24.15
+dual 14 : 21.43
+dual 15 : 31.56
+dual 16 : 31.07
+dual 17 : 32.34
+dual 18 : 20.32
+dual 19 : 33.55
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value: -1.0447426817e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.435995e-03
+Target 0 : 9 
+opt_val : -1.044743e+01, real_redcost : -1.044743e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value: -3.5132491677e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.327038e-03
+Target 1 : 5 
+opt_val : -3.513249e+00, real_redcost : -3.513249e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value: -2.1658316061e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 8.361340e-04
+Target 2 : 3 7 
+opt_val : -2.165832e+01, real_redcost : -1.525625e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value: -9.3874758494e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.315832e-03
+Target 3 : 7 
+opt_val : -9.387476e+00, real_redcost : -9.387476e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value: -7.6377657196e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.327038e-03
+Target 4 : 3 
+opt_val : -7.637766e+00, real_redcost : -7.637766e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -1.2819813003e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.282930e-03
+Target 5 : 1 
+opt_val : -1.281981e+01, real_redcost : -1.281981e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value: -1.0670277011e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.389980e-03
+Target 6 : 1 7 
+opt_val : -1.067028e+01, real_redcost : -5.585168e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value: -2.1808062243e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.759167e-04
+Target 7 : 
+opt_val : -2.180806e+01, real_redcost : -6.341769e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value: -6.3309057656e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.080036e-03
+Target 8 : 3 
+opt_val : -6.330906e+00, real_redcost : -6.330906e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value: -1.3436738440e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.091957e-03
+Target 9 : 1 7 
+opt_val : -1.343674e+01, real_redcost : -1.080026e+01
+---- This target doesn't satisfied -----
+
+In this pricing step we gain 10 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 69
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+         11     1.1070507073e+02 Pr: 0(0) 0s
+Model   status      : Optimal
+Simplex   iterations: 11
+Objective value     :  1.1070507073e+02
+HiGHS run time      :          0.00
+Model status: Optimal
+Simplex iteration count: 11
+Objective function value: 110.705
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 0; value = 0.666667Alert!!!!!! We find a non-integer LP solution in Master Problem !!!!!!!
+; dual = 0; status: Basic
+Column 2; value = 0.666667Alert!!!!!! We find a non-integer LP solution in Master Problem !!!!!!!
+; dual = 0; status: Basic
+Column 3; value = 0.333333Alert!!!!!! We find a non-integer LP solution in Master Problem !!!!!!!
+; dual = 0; status: Basic
+Column 4; value = 0.666667Alert!!!!!! We find a non-integer LP solution in Master Problem !!!!!!!
+; dual = 0; status: Basic
+Column 6; value = 1; dual = 0; status: Basic
+Column 8; value = 1; dual = 0; status: Basic
+Column 9; value = 0.666667Alert!!!!!! We find a non-integer LP solution in Master Problem !!!!!!!
+; dual = 0; status: Basic
+Column 19; value = 0.333333Alert!!!!!! We find a non-integer LP solution in Master Problem !!!!!!!
+; dual = 0; status: Basic
+Column 59; value = 0.333333Alert!!!!!! We find a non-integer LP solution in Master Problem !!!!!!!
+; dual = 0; status: Basic
+Column 60; value = 1; dual = -7.39542; status: At upper bound
+Column 61; value = 0.333333Alert!!!!!! We find a non-integer LP solution in Master Problem !!!!!!!
+; dual = 0; status: Basic
+Column 62; value = 0.666667Alert!!!!!! We find a non-integer LP solution in Master Problem !!!!!!!
+; dual = 0; status: Basic
+Column 63; value = 0.333333Alert!!!!!! We find a non-integer LP solution in Master Problem !!!!!!!
+; dual = 0; status: Basic
+Column 64; value = 1; dual = -4.38387; status: At upper bound
+Column 66; value = 1; dual = 0; status: Basic
+ HIGHS use 4.192829e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -3.05
+dual 1 : -21.54
+dual 2 : -20.25
+dual 3 : -12.70
+dual 4 : -10.68
+dual 5 : -19.35
+dual 6 : -18.37
+dual 7 : -21.94
+dual 8 : -11.16
+dual 9 : -15.92
+dual 10 : 21.39
+dual 11 : 31.69
+dual 12 : 36.24
+dual 13 : 26.51
+dual 14 : 16.15
+dual 15 : 34.79
+dual 16 : 33.57
+dual 17 : 26.00
+dual 18 : 15.04
+dual 19 : 36.05
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value: -7.2836278949e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 1
+SubProblem running time : 1.867056e-03
+Target 0 : 0 4 
+opt_val : -7.283628e+00, real_redcost : -2.133962e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value: -2.1400228198e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 7.269382e-04
+Target 1 : 0 8 
+opt_val : -2.140023e+01, real_redcost : -1.528804e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value: -2.1744715320e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.092911e-03
+Target 2 : 0 4 
+opt_val : -2.174472e+01, real_redcost : -1.849963e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value: -1.4978159499e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.770393e-04
+Target 3 : 0 
+opt_val : -1.497816e+01, real_redcost : -1.497816e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value: -1.0192849500e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.849766e-04
+Target 4 : 0 
+opt_val : -1.019285e+01, real_redcost : -1.019285e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -2.2241393535e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.083136e-03
+Target 5 : 0 
+opt_val : -2.224139e+01, real_redcost : -2.224139e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value: -1.8417778531e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.074076e-03
+Target 6 : 0 8 
+opt_val : -1.841778e+01, real_redcost : -1.441900e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value: -1.8671237291e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.809235e-04
+Target 7 : 0 3 
+opt_val : -1.867124e+01, real_redcost : -9.117185e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value: -1.9127828813e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 1
+SubProblem running time : 1.477003e-03
+Target 8 : 0 
+opt_val : -1.912783e+00, real_redcost : -1.912783e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value: -2.1049927403e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.062155e-03
+Target 9 : 0 4 
+opt_val : -2.104993e+01, real_redcost : -1.619071e+01
+---- This target doesn't satisfied -----
+
+In this pricing step we gain 10 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 79
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+         27     9.4514356778e+01 Pr: 0(0) 0s
+Model   status      : Optimal
+Simplex   iterations: 27
+Objective value     :  9.4514356778e+01
+HiGHS run time      :          0.00
+Model status: Optimal
+Simplex iteration count: 27
+Objective function value: 94.5144
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 2; value = 1; dual = 0; status: Basic
+Column 6; value = 1; dual = 0; status: Basic
+Column 8; value = 1; dual = 0; status: Basic
+Column 59; value = 1; dual = 0; status: Basic
+Column 60; value = 1; dual = 0; status: Basic
+Column 62; value = 1; dual = 0; status: Basic
+Column 63; value = 1; dual = -1.30686; status: At upper bound
+Column 64; value = 1; dual = 0; status: Basic
+Column 66; value = 1; dual = 0; status: Basic
+Column 78; value = 1; dual = -3.78182; status: At upper bound
+ HIGHS use 4.659176e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -17.46
+dual 1 : -18.09
+dual 2 : -15.01
+dual 3 : -12.14
+dual 4 : -12.81
+dual 5 : -22.74
+dual 6 : -19.11
+dual 7 : -21.37
+dual 8 : -11.90
+dual 9 : -30.33
+dual 10 : 35.80
+dual 11 : 27.69
+dual 12 : 31.00
+dual 13 : 25.94
+dual 14 : 16.89
+dual 15 : 26.96
+dual 16 : 34.30
+dual 17 : 26.00
+dual 18 : 15.78
+dual 19 : 40.19
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value: -1.3026717219e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.007080e-03
+Target 0 : 2 
+opt_val : -1.302672e+01, real_redcost : -1.302672e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value: -7.3921395248e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.859303e-04
+Target 1 : 8 
+opt_val : -7.392140e+00, real_redcost : -7.392140e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value: -1.0230057826e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.818771e-04
+Target 2 : 3 
+opt_val : -1.023006e+01, real_redcost : -1.023006e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value: -3.4768457852e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.053810e-03
+Target 3 : 8 
+opt_val : -3.476846e+00, real_redcost : -3.476846e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value: -1.3068599540e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.958744e-04
+Target 4 : 3 
+opt_val : -1.306860e+00, real_redcost : -1.306860e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -7.0009748065e-01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 2.214909e-03
+Target 5 : 3 
+opt_val : -7.000975e-01, real_redcost : -7.000975e-01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value: -9.9420323663e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.080036e-03
+Target 6 : 8 
+opt_val : -9.942032e+00, real_redcost : -9.942032e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value: -1.0353914138e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.060963e-03
+Target 7 : 3 
+opt_val : -1.035391e+01, real_redcost : -1.035391e+01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.266956e-03
+Target 8 : 8 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value: -9.6883137093e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.289845e-03
+Target 9 : 1 
+opt_val : -9.688314e+00, real_redcost : -9.688314e+00
+---- This target doesn't satisfied -----
+
+In this pricing step we gain 9 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 88
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+          9     8.0953852696e+01 Pr: 0(0) 0s
+Model   status      : Optimal
+Simplex   iterations: 9
+Objective value     :  8.0953852696e+01
+HiGHS run time      :          0.00
+Model status: Optimal
+Simplex iteration count: 9
+Objective function value: 80.9539
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 2; value = 1; dual = 0; status: Basic
+Column 4; value = 1; dual = -5.24724; status: At upper bound
+Column 6; value = 1; dual = 0; status: Basic
+Column 8; value = 1; dual = 0; status: Basic
+Column 59; value = 1; dual = 0; status: Basic
+Column 60; value = 1; dual = 0; status: Basic
+Column 62; value = 1; dual = 0; status: Basic
+Column 74; value = 1; dual = 0; status: Basic
+Column 86; value = 1; dual = 0; status: Basic
+Column 87; value = 1; dual = -2.74466; status: At upper bound
+ HIGHS use 4.956245e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -17.46
+dual 1 : -18.09
+dual 2 : -15.13
+dual 3 : -22.49
+dual 4 : -9.65
+dual 5 : -9.78
+dual 6 : -15.18
+dual 7 : -21.37
+dual 8 : -17.91
+dual 9 : -17.43
+dual 10 : 22.90
+dual 11 : 14.73
+dual 12 : 31.12
+dual 13 : 25.94
+dual 14 : 20.37
+dual 15 : 26.96
+dual 16 : 30.38
+dual 17 : 26.00
+dual 18 : 21.80
+dual 19 : 33.24
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.628876e-03
+Target 0 : 9 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.103878e-03
+Target 1 : 5 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value: -1.3023339648e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.868839e-04
+Target 2 : 4 5 
+opt_val : -1.302334e+01, real_redcost : -7.897965e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value: -5.4943160664e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.317024e-03
+Target 3 : 9 
+opt_val : -5.494316e+00, real_redcost : -3.805012e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value: -5.2472385934e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.920597e-04
+Target 4 : 4 
+opt_val : -5.247239e+00, real_redcost : -5.247239e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -5.8883166739e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 8.687973e-04
+Target 5 : 4 5 
+opt_val : -5.888317e+00, real_redcost : -3.596822e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value: -6.1815210799e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.388073e-03
+Target 6 : 4 5 
+opt_val : -6.181521e+00, real_redcost : -3.297838e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value: -8.4218591312e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.920597e-04
+Target 7 : 5 
+opt_val : -8.421859e+00, real_redcost : -8.421859e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value: -3.6719445068e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.721020e-04
+Target 8 : 6 
+opt_val : -3.671945e+00, real_redcost : -2.154254e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value: -1.3725430590e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.073122e-03
+Target 9 : 4 5 
+opt_val : -1.372543e+01, real_redcost : -9.831837e+00
+---- This target doesn't satisfied -----
+
+In this pricing step we gain 8 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 96
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+          3     7.4994586291e+01 Pr: 0(0) 0s
+Model   status      : Optimal
+Simplex   iterations: 3
+Objective value     :  7.4994586291e+01
+HiGHS run time      :          0.01
+Model status: Optimal
+Simplex iteration count: 3
+Objective function value: 74.9946
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 4; value = 1; dual = 0; status: At upper bound
+Column 7; value = 1; dual = 0; status: Basic
+Column 60; value = 1; dual = 0; status: Basic
+Column 74; value = 1; dual = 0; status: Basic
+Column 79; value = 1; dual = 0; status: Basic
+Column 81; value = 1; dual = 0; status: Basic
+Column 85; value = 1; dual = 0; status: Basic
+Column 87; value = 1; dual = -2.74466; status: At upper bound
+Column 89; value = 1; dual = -3.80501; status: At upper bound
+Column 94; value = 1; dual = -2.15425; status: At upper bound
+ HIGHS use 5.225420e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -17.46
+dual 1 : -18.09
+dual 2 : -15.13
+dual 3 : -22.49
+dual 4 : -9.65
+dual 5 : -19.61
+dual 6 : -13.43
+dual 7 : -21.37
+dual 8 : -16.16
+dual 9 : -17.43
+dual 10 : 22.90
+dual 11 : 24.56
+dual 12 : 31.12
+dual 13 : 25.94
+dual 14 : 15.12
+dual 15 : 26.96
+dual 16 : 28.63
+dual 17 : 26.00
+dual 18 : 20.05
+dual 19 : 33.24
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.628876e-03
+Target 0 : 9 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value: -4.0728379683e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.011848e-03
+Target 1 : 4 
+opt_val : -4.072838e+00, real_redcost : -1.343249e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value: -9.9023536120e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.768703e-04
+Target 2 : 4 
+opt_val : -9.902354e+00, real_redcost : -9.902354e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value: -5.4943160664e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.266956e-03
+Target 3 : 9 
+opt_val : -5.494316e+00, real_redcost : -3.805012e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.027107e-03
+Target 4 : 4 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -8.0976723313e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.749630e-04
+Target 5 : 4 6 
+opt_val : -8.097672e+00, real_redcost : -1.847738e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value: -1.8121322925e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.477957e-03
+Target 6 : 4 6 
+opt_val : -1.812132e+00, real_redcost : -6.793209e-01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value: -8.4579684976e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.811619e-04
+Target 7 : 2 
+opt_val : -8.457968e+00, real_redcost : -6.518631e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value: -2.4767738985e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.003027e-03
+Target 8 : 4 
+opt_val : -2.476774e+00, real_redcost : -7.113260e-01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value: -1.0011913071e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.958744e-04
+Target 9 : 4 6 
+opt_val : -1.001191e+01, real_redcost : -5.639458e+00
+---- This target doesn't satisfied -----
+
+In this pricing step we gain 8 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 104
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+         11     7.2280967839e+01 Pr: 0(0); Du: 0(1.77636e-15) 0s
+Model   status      : Optimal
+Simplex   iterations: 11
+Objective value     :  7.2280967839e+01
+HiGHS run time      :          0.01
+Model status: Optimal
+Simplex iteration count: 11
+Objective function value: 72.281
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 4; value = 1; dual = 0; status: Basic
+Column 59; value = 1; dual = 0; status: Basic
+Column 60; value = 1; dual = 0; status: Basic
+Column 62; value = 1; dual = 0; status: Basic
+Column 74; value = 1; dual = 0; status: Basic
+Column 81; value = 1; dual = 0; status: Basic
+Column 85; value = 1; dual = 0; status: Basic
+Column 87; value = 1; dual = -6.21028; status: At upper bound
+Column 94; value = 1; dual = 0; status: Basic
+Column 101; value = 1; dual = -2.71362; status: At upper bound
+ HIGHS use 5.550146e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -22.11
+dual 1 : -22.75
+dual 2 : -18.94
+dual 3 : -22.49
+dual 4 : -19.55
+dual 5 : -18.20
+dual 6 : -19.45
+dual 7 : -21.37
+dual 8 : -20.03
+dual 9 : -21.23
+dual 10 : 26.70
+dual 11 : 23.15
+dual 12 : 31.12
+dual 13 : 25.94
+dual 14 : 25.03
+dual 15 : 31.61
+dual 16 : 32.50
+dual 17 : 26.00
+dual 18 : 23.92
+dual 19 : 41.36
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.286983e-03
+Target 0 : 9 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.095057e-03
+Target 1 : 5 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value: -1.8113291664e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.074076e-03
+Target 2 : 7 
+opt_val : -1.811329e+00, real_redcost : -1.811329e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.245022e-03
+Target 3 : 9 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value: -1.5850567083e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.711483e-04
+Target 4 : 
+opt_val : -1.585057e+01, real_redcost : -2.658394e-02
+---- This target doesn't satisfied -----
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -3.2741839476e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.770393e-04
+Target 5 : 6 
+opt_val : -3.274184e+00, real_redcost : -3.274184e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.090050e-03
+Target 6 : 8 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value: -2.7136184521e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.789467e-04
+Target 7 : 2 
+opt_val : -2.713618e+00, real_redcost : -2.713618e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.227140e-03
+Target 8 : 8 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value: -7.7551085484e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.167059e-03
+Target 9 : 5 
+opt_val : -7.755109e+00, real_redcost : -7.755109e+00
+---- This target doesn't satisfied -----
+
+In this pricing step we gain 5 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 109
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+          7     7.1227132966e+01 Pr: 0(0); Du: 0(5.32907e-15) 0s
+Model   status      : Optimal
+Simplex   iterations: 7
+Objective value     :  7.1227132966e+01
+HiGHS run time      :          0.01
+Model status: Optimal
+Simplex iteration count: 7
+Objective function value: 71.2271
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 59; value = 1; dual = 0; status: Basic
+Column 60; value = 1; dual = 0; status: Basic
+Column 62; value = 1; dual = 0; status: Basic
+Column 67; value = 1; dual = 0; status: Basic
+Column 73; value = 1; dual = 0; status: Basic
+Column 85; value = 1; dual = 0; status: Basic
+Column 87; value = 1; dual = 0; status: Basic
+Column 97; value = 1; dual = 0; status: Basic
+Column 101; value = 1; dual = 3.55271e-15; status: At upper bound
+Column 106; value = 1; dual = -1.02725; status: At upper bound
+ HIGHS use 5.833626e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -22.09
+dual 1 : -22.72
+dual 2 : -21.65
+dual 3 : -22.49
+dual 4 : -19.55
+dual 5 : -19.72
+dual 6 : -21.67
+dual 7 : -23.19
+dual 8 : -22.25
+dual 9 : -23.04
+dual 10 : 28.52
+dual 11 : 24.67
+dual 12 : 31.12
+dual 13 : 27.76
+dual 14 : 25.00
+dual 15 : 31.59
+dual 16 : 34.72
+dual 17 : 26.00
+dual 18 : 26.14
+dual 19 : 35.13
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.097918e-03
+Target 0 : 9 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.091003e-03
+Target 1 : 5 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 2.196074e-03
+Target 2 : 4 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.259089e-03
+Target 3 : 9 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.132011e-03
+Target 4 : 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value: -1.0272509380e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.808540e-04
+Target 5 : 6 
+opt_val : -1.027251e+00, real_redcost : -1.027251e+00
+---- This target doesn't satisfied -----
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.099110e-03
+Target 6 : 8 
+opt_val : 0.000000e+00, real_redcost : -3.552714e-15
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 1
+SubProblem running time : 1.593113e-03
+Target 7 : 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value: -1.5332904116e+01
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 6.668568e-04
+Target 8 : 
+opt_val : -1.533290e+01, real_redcost : -1.355421e-01
+---- This target doesn't satisfied -----
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.055956e-03
+Target 9 : 5 
+opt_val : 0.000000e+00, real_redcost : -3.552714e-15
+
+In this pricing step we gain 2 scenes
+
+
+--------------Now Solve a new Master Problem-------------
+Now solve Mater Problem
+scene pool size : 111
+
+
+------------- Start Highs ---------------------Solving LP without presolve or with basis
+Using EKK dual simplex solver - serial
+  Iteration        Objective     Infeasibilities num(sum)
+          0     0.0000000000e+00 Ph1: 0(0) 0s
+          4     7.1227132966e+01 Pr: 0(0); Du: 0(5.32907e-15) 0s
+Model   status      : Optimal
+Simplex   iterations: 4
+Objective value     :  7.1227132966e+01
+HiGHS run time      :          0.01
+Model status: Optimal
+Simplex iteration count: 4
+Objective function value: 71.2271
+Primal  solution status: Feasible
+Dual    solution status: Feasible
+Basis: Valid
+Only Print nonzero solution!
+Column 59; value = 1; dual = 0; status: Basic
+Column 60; value = 1; dual = 0; status: Basic
+Column 62; value = 1; dual = 0; status: Basic
+Column 67; value = 1; dual = 0; status: Basic
+Column 73; value = 1; dual = 0; status: Basic
+Column 85; value = 1; dual = 0; status: Basic
+Column 87; value = 1; dual = 0; status: Basic
+Column 97; value = 1; dual = 0; status: Basic
+Column 106; value = 1; dual = 0; status: At upper bound
+Column 107; value = 1; dual = 0; status: Basic
+ HIGHS use 6.097555e-03 seconds -------------------------------------------------------------- 
+ ------------- End Highs ---------------------
+
+
+--------------new Master Problem has been solved-------------
+Now get dual sols from lp to master 
+size : 20
+dual size : 20
+dual 0 : -21.98
+dual 1 : -22.61
+dual 2 : -21.52
+dual 3 : -22.36
+dual 4 : -19.41
+dual 5 : -19.61
+dual 6 : -22.59
+dual 7 : -23.05
+dual 8 : -22.12
+dual 9 : -22.91
+dual 10 : 28.38
+dual 11 : 24.56
+dual 12 : 30.99
+dual 13 : 27.62
+dual 14 : 24.89
+dual 15 : 31.48
+dual 16 : 34.58
+dual 17 : 25.86
+dual 18 : 26.00
+dual 19 : 35.02
+
+Now calculate the scene 0
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.107931e-03
+Target 0 : 9 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 1
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.094818e-03
+Target 1 : 5 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 2
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 2.127886e-03
+Target 2 : 4 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 3
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.760006e-03
+Target 3 : 9 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 4
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 1
+SubProblem running time : 2.089977e-03
+Target 4 : 4 
+opt_val : 0.000000e+00, real_redcost : -3.552714e-15
+
+Now calculate the scene 5
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 1
+SubProblem running time : 2.051115e-03
+Target 5 : 1 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 6
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.110077e-03
+Target 6 : 8 
+opt_val : 0.000000e+00, real_redcost : 3.552714e-15
+
+Now calculate the scene 7
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.229048e-03
+Target 7 : 3 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+Now calculate the scene 8
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.118898e-03
+Target 8 : 
+opt_val : 0.000000e+00, real_redcost : 3.552714e-15
+
+Now calculate the scene 9
+
+Solution status: 101
+Objective value:  0.0000000000e+00
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 9.820461e-04
+Target 9 : 5 
+opt_val : 0.000000e+00, real_redcost : 0.000000e+00
+
+In this pricing step we gain 0 scenes
+All the Scenes generated from Subproblems are : 
+Target : 0, Size : 9
+Target 0 : 0 
+Target 0 : 4 6 7 
+Target 0 : 1 2 8 
+Target 0 : 1 2 
+Target 0 : 2 7 8 
+Target 0 : 5 8 
+Target 0 : 9 
+Target 0 : 0 4 
+Target 0 : 2 
+Target : 1, Size : 10
+Target 1 : 1 
+Target 1 : 2 5 
+Target 1 : 2 5 8 
+Target 1 : 1 2 
+Target 1 : 3 7 8 
+Target 1 : 5 8 
+Target 1 : 5 
+Target 1 : 0 8 
+Target 1 : 8 
+Target 1 : 4 
+Target : 2, Size : 12
+Target 2 : 2 
+Target 2 : 0 5 9 
+Target 2 : 1 2 6 
+Target 2 : 1 2 
+Target 2 : 3 7 8 
+Target 2 : 3 4 5 8 
+Target 2 : 3 7 
+Target 2 : 0 4 
+Target 2 : 3 
+Target 2 : 4 5 
+Target 2 : 4 
+Target 2 : 7 
+Target : 3, Size : 11
+Target 3 : 3 
+Target 3 : 7 9 
+Target 3 : 1 2 5 6 9 
+Target 3 : 1 2 
+Target 3 : 3 7 8 
+Target 3 : 5 8 
+Target 3 : 7 
+Target 3 : 0 
+Target 3 : 8 
+Target 3 : 9 
+Target 3 : 9 
+Target : 4, Size : 11
+Target 4 : 4 
+Target 4 : 0 3 
+Target 4 : 1 8 
+Target 4 : 0 1 2 
+Target 4 : 3 7 
+Target 4 : 8 
+Target 4 : 3 
+Target 4 : 0 
+Target 4 : 3 
+Target 4 : 4 
+Target 4 : 
+Target : 5, Size : 13
+Target 5 : 5 
+Target 5 : 4 5 8 
+Target 5 : 2 5 7 8 
+Target 5 : 1 2 
+Target 5 : 7 8 
+Target 5 : 5 8 
+Target 5 : 1 
+Target 5 : 0 
+Target 5 : 3 
+Target 5 : 4 5 
+Target 5 : 4 6 
+Target 5 : 6 
+Target 5 : 6 
+Target : 6, Size : 11
+Target 6 : 6 
+Target 6 : 1 5 7 
+Target 6 : 1 2 6 8 
+Target 6 : 1 2 
+Target 6 : 3 7 8 
+Target 6 : 5 8 
+Target 6 : 1 7 
+Target 6 : 0 8 
+Target 6 : 8 
+Target 6 : 4 5 
+Target 6 : 4 6 
+Target : 7, Size : 12
+Target 7 : 7 
+Target 7 : 2 3 
+Target 7 : 1 6 8 
+Target 7 : 1 2 
+Target 7 : 3 7 8 
+Target 7 : 1 3 5 8 
+Target 7 : 
+Target 7 : 0 3 
+Target 7 : 3 
+Target 7 : 5 
+Target 7 : 2 
+Target 7 : 2 
+Target : 8, Size : 10
+Target 8 : 8 
+Target 8 : 3 8 
+Target 8 : 1 2 8 
+Target 8 : 1 2 
+Target 8 : 7 8 
+Target 8 : 3 
+Target 8 : 0 
+Target 8 : 6 
+Target 8 : 4 
+Target 8 : 
+Target : 9, Size : 12
+Target 9 : 9 
+Target 9 : 0 2 4 
+Target 9 : 2 5 8 9 
+Target 9 : 0 1 2 6 
+Target 9 : 7 8 
+Target 9 : 5 8 
+Target 9 : 1 7 
+Target 9 : 0 4 
+Target 9 : 1 
+Target 9 : 4 5 
+Target 9 : 4 6 
+Target 9 : 5 
+the opt_sol is : 
+value of target 0 : 5.47
+Target 0 : 9 
+value of target 1 : 4.95
+Target 1 : 5 
+value of target 2 : 4.57
+Target 3 : 7 
+value of target 3 : 3.64
+Target 8 : 3 
+value of target 4 : 2.91
+Target 4 : 0 
+value of target 5 : 12.46
+Target 6 : 8 
+value of target 6 : 12.40
+Target 9 : 1 
+value of target 7 : 11.57
+Target 2 : 4 
+value of target 8 : 8.89
+Target 5 : 6 
+value of target 9 : 4.35
+Target 7 : 2 
+optimal value is 71.2271
+All variable in opt solution of Master is Integer value
+pricing running time : 0.14
+pricing running Num  : 111
+avg sub running time : 1.262259e-03
+master running Num : 12
+master running time : 0.05
+All time : 0.130
+step zero time : 0.00
+step one time : 0.02
+step two time : 0.11
+======= Column Generation finished ========= 
+Seed : 3
+410000/1000000 = 0.41 (s) 
+Size : 0 
+/share/home/liguanda/WTA-Problem/Code/column_generation/Column_generation_structure/data/wta3.txt

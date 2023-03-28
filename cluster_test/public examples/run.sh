@@ -1,0 +1,12 @@
+./bin/WTA_CG 5 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_5.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_5.err
+./bin/WTA_CG 10 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_10.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_10.err
+./bin/WTA_CG 20 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_20.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_20.err
+./bin/WTA_CG 30 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_30.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_30.err
+./bin/WTA_CG 40 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_40.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_40.err
+./bin/WTA_CG 50 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_50.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_50.err
+./bin/WTA_CG 60 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_60.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_60.err
+./bin/WTA_CG 70 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_70.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_70.err
+./bin/WTA_CG 80 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_80.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_80.err
+./bin/WTA_CG 90 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_90.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_90.err
+./bin/WTA_CG 100 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_100.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_100.err
+./bin/WTA_CG 200 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_200.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/WTA_CG_200.err

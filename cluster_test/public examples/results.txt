@@ -1,0 +1,96 @@
+
+ Size : 5 
+170000/1000000 = 0.17 (s) 
+optimal value is 48.3640
+All variable in opt solution of Master is Integer value
+pricing running time : 0.08
+pricing running Num  : 38
+avg sub running time : 2.038749e-03
+
+ Size : 10 
+280000/1000000 = 0.28 (s) 
+optimal value is 96.3123
+All variable in opt solution of Master is Integer value
+pricing running time : 0.13
+pricing running Num  : 106
+avg sub running time : 1.231808e-03
+
+ Size : 20 
+540000/1000000 = 0.54 (s) 
+optimal value is 142.1070
+All variable in opt solution of Master is Integer value
+pricing running time : 0.49
+pricing running Num  : 346
+avg sub running time : 1.413328e-03
+
+ Size : 30 
+1310000/1000000 = 1.31 (s) 
+optimal value is 248.0285
+All variable in opt solution of Master is Integer value
+pricing running time : 1.16
+pricing running Num  : 682
+avg sub running time : 1.696132e-03
+
+ Size : 40 
+1350000/1000000 = 1.35 (s) 
+optimal value is 305.5016
+All variable in opt solution of Master is Integer value
+pricing running time : 1.23
+pricing running Num  : 768
+avg sub running time : 1.595207e-03
+
+ Size : 50 
+1980000/1000000 = 1.98 (s) 
+optimal value is 353.0102
+All variable in opt solution of Master is Integer value
+pricing running time : 1.94
+pricing running Num  : 1187
+avg sub running time : 1.638102e-03
+
+ Size : 60 
+2690000/1000000 = 2.69 (s) 
+optimal value is 414.2222
+All variable in opt solution of Master is Integer value
+pricing running time : 2.53
+pricing running Num  : 1592
+avg sub running time : 1.588309e-03
+
+ Size : 70 
+3160000/1000000 = 3.16 (s) 
+optimal value is 495.7751
+All variable in opt solution of Master is Integer value
+pricing running time : 3.94
+pricing running Num  : 1881
+avg sub running time : 2.097225e-03
+
+ Size : 80 
+3980000/1000000 = 3.98 (s) 
+optimal value is 530.5739
+All variable in opt solution of Master is Integer value
+pricing running time : 4.86
+pricing running Num  : 2151
+avg sub running time : 2.257155e-03
+
+ Size : 90 
+5300000/1000000 = 5.3 (s) 
+optimal value is 587.8156
+All variable in opt solution of Master is Integer value
+pricing running time : 8.13
+pricing running Num  : 2680
+avg sub running time : 3.034593e-03
+
+ Size : 100 
+5480000/1000000 = 5.48 (s) 
+optimal value is 691.9236
+All variable in opt solution of Master is Integer value
+pricing running time : 9.40
+pricing running Num  : 2938
+avg sub running time : 3.200258e-03
+
+ Size : 200 
+23340000/1000000 = 23.34 (s) 
+optimal value is 1274.7782
+All variable in opt solution of Master is Integer value
+pricing running time : 36.10
+pricing running Num  : 8438
+avg sub running time : 4.278696e-03

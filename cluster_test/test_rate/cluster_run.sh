@@ -1,0 +1,1 @@
+bsub -J psclp -q batch -R "span[ptile=36]" -n 180 -e %J.errc -o %J.outc "mpirun ~/cmipwork/check/bin/lsf ./run.sh"

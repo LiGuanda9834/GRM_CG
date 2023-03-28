@@ -1,0 +1,160 @@
+target : 10, weapon : 10
+370000/1000000 = 0.37 (s) 
+optimal value is 88.5791
+All variable in opt solution of Master is Integer value
+pricing running time : 11.75
+pricing running Num  : 135
+avg sub running time : 8.702916e-02
+ 
+target : 10, weapon : 20
+1790000/1000000 = 1.79 (s) 
+optimal value is 10.7845
+All variable in opt solution of Master is Integer value
+pricing running time : 55.78
+pricing running Num  : 280
+avg sub running time : 1.992112e-01
+ 
+target : 10, weapon : 40
+2920000/1000000 = 2.92 (s) 
+optimal value is 0.1892
+All variable in opt solution of Master is Integer value
+pricing running time : 40.22
+pricing running Num  : 743
+avg sub running time : 5.413780e-02
+ 
+target : 10, weapon : 80
+27610000/1000000 = 27.61 (s) 
+optimal value is 0.0001
+All variable in opt solution of Master is Integer value
+pricing running time : 126.12
+pricing running Num  : 2455
+avg sub running time : 5.137249e-02
+ 
+target : 20, weapon : 160
+Start main function
+Start main function
+
+ ----- start test WTA by CG ----- 
+Create empty WTA with size W: 0, T:0 
+ Need Initialized
+ 
+target : 20, weapon : 20
+560000/1000000 = 0.56 (s) 
+optimal value is 161.6944
+All variable in opt solution of Master is Integer value
+pricing running time : 20.48
+pricing running Num  : 262
+avg sub running time : 7.815314e-02
+ 
+target : 20, weapon : 40
+4170000/1000000 = 4.17 (s) 
+optimal value is 19.2056
+All variable in opt solution of Master is Integer value
+pricing running time : 90.17
+pricing running Num  : 661
+avg sub running time : 1.364131e-01
+ 
+target : 20, weapon : 80
+14270000/1000000 = 14.27 (s) 
+optimal value is 0.2704
+All variable in opt solution of Master is Integer value
+pricing running time : 91.51
+pricing running Num  : 1936
+avg sub running time : 4.726539e-02
+ 
+target : 30, weapon : 120
+59170000/1000000 = 59.17 (s) 
+optimal value is 0.3086
+All variable in opt solution of Master is Integer value
+pricing running time : 166.33
+pricing running Num  : 3093
+avg sub running time : 5.377545e-02
+ 
+target : 30, weapon : 240
+T2	0.78 	0.87 	0.80 	0.75 	0.63 	0.77 	0.79 	0.74 	0.77 	0.87 	0.85 	0.85 	0.84 	0.85 	0.71 	0.81 	0.77 	0.76 	0.79 	0.70 	0.87 	0.88 	0.87 	0.78 	0.86 	0.88 	0.83 	0.74 	0.84 	0.87 	0.86 	0.69 	0.72 	0.76 	0.61 	0.85 	0.71 	0.88 	0.83 	0.89 	0.76 	0.86 	0.64 	0.70 	0.60 	0.90 	0.80 	0.78 	0.75 	0.74 	0.68 	0.65 	0.88 	0.64 	0.88 	0.89 	0.67 	0.82 	0.77 	0.77 	0.88 	0.85 	0.80 	0.85 	0.67 	0.66 	0.62 	0.84 	0.61 	0.69 	0.87 	0.80 	0.65 	0.86 	0.67 	0.86 	0.83 	0.63 	0.88 	0.69 	0.63 	0.61 	0.70 	0.85 	0.82 	0.63 	0.74 	0.65 	0.82 	0.66 	0.88 	0.60 	0.63 	0.71 	0.71 	0.70 	0.85 	0.82 	0.89 	0.79 	0.73 	0.77 	0.80 	0.84 	0.82 	0.80 	0.64 	0.70 	0.68 	0.64 	0.64 	0.70 	0.79 	0.77 	0.65 	0.68 	0.72 	0.72 	0.67 	0.70 	0.79 	0.85 	0.64 	0.68 	0.62 	0.60 	0.61 	0.77 	0.73 	0.87 	0.85 	0.83 	0.80 	0.60 	0.78 	0.86 	0.64 	0.87 	0.79 	0.64 	0.78 	0.70 	0.73 	0.80 	0.62 	0.88 	0.76 	0.63 	0.71 	0.89 	0.71 	0.84 	0.67 	0.82 	0.82 	0.68 	0.69 	0.62 	0.77 	0.62 	0.85 	0.81 	0.62 	0.86 	0.77 	0.65 	0.70 	0.84 	0.76 	0.79 	0.60 	0.75 	0.81 	0.85 	0.73 	0.89 	0.82 	0.85 	0.63 	0.75 	0.64 	0.67 	0.81 	0.77 	0.75 	0.65 	0.74 	0.64 	0.88 	0.85 	0.67 	0.82 	0.70 	0.65 	0.65 	0.85 	0.66 	0.90 	0.71 	0.81 	0.77 	0.77 	0.83 	0.86 	0.84 	0.70 	0.70 	0.79 	0.78 	0.84 	0.86 	0.63 	0.83 	0.70 	0.64 	0.89 	0.60 	0.79 	0.63 	0.67 	0.68 	0.70 	0.87 	0.87 	0.83 	0.69 	0.69 	0.89 	0.70 	0.88 	0.65 	0.64 	0.67 	0.86 	0.69 	0.80 	0.62 	0.88 	0.83 	0.61 	52.00 
+Solution status: 101
+Objective value: -7.2722009443e-03
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.664891e-01
+ 
+target : 30, weapon : 30
+910000/1000000 = 0.91 (s) 
+optimal value is 237.6059
+All variable in opt solution of Master is Integer value
+pricing running time : 30.58
+pricing running Num  : 552
+avg sub running time : 5.540044e-02
+ 
+target : 30, weapon : 60
+5880000/1000000 = 5.88 (s) 
+optimal value is 26.4768
+All variable in opt solution of Master is Integer value
+pricing running time : 95.65
+pricing running Num  : 1144
+avg sub running time : 8.360845e-02
+ 
+target : 40, weapon : 160
+187480000/1000000 = 187.48 (s) 
+optimal value is 0.3721
+All variable in opt solution of Master is Integer value
+pricing running time : 286.35
+pricing running Num  : 4767
+avg sub running time : 6.006973e-02
+ 
+target : 40, weapon : 320
+Start main function
+Objective value: -1.3464208926e-03
+Solution status is CPX_STAT_OPTIMAL
+Node: 0
+SubProblem running time : 1.373479e-01
+Target 4 : 5 30 141 169 181 196 281 317 318 
+ 
+target : 40, weapon : 40
+3360000/1000000 = 3.36 (s) 
+optimal value is 311.8235
+All variable in opt solution of Master is Integer value
+pricing running time : 90.02
+pricing running Num  : 803
+avg sub running time : 1.121108e-01
+ 
+target : 40, weapon : 80
+4650000/1000000 = 4.65 (s) 
+optimal value is 33.2237
+All variable in opt solution of Master is Integer value
+pricing running time : 80.71
+pricing running Num  : 1694
+avg sub running time : 4.764476e-02
+ 
+target : 5, weapon : 10
+690000/1000000 = 0.69 (s) 
+optimal value is 7.8846
+All variable in opt solution of Master is Integer value
+pricing running time : 15.45
+pricing running Num  : 80
+avg sub running time : 1.930647e-01
+ 
+target : 5, weapon : 20
+880000/1000000 = 0.88 (s) 
+optimal value is 0.1446
+All variable in opt solution of Master is Integer value
+pricing running time : 20.71
+pricing running Num  : 287
+avg sub running time : 7.216595e-02
+ 
+target : 5, weapon : 40
+8390000/1000000 = 8.39 (s) 
+optimal value is 0.0000
+All variable in opt solution of Master is Integer value
+pricing running time : 94.06
+pricing running Num  : 852
+avg sub running time : 1.103963e-01
+ 
+target : 5, weapon : 5
+210000/1000000 = 0.21 (s) 
+optimal value is 64.4896
+All variable in opt solution of Master is Integer value
+pricing running time : 3.53
+pricing running Num  : 41
+avg sub running time : 8.607516e-02
+ 

@@ -1,0 +1,72 @@
+target : 10, weapon : 40
+2910000/1000000 = 2.91 (s) 
+optimal value is 0.1892
+All variable in opt solution of Master is Integer value
+pricing running time : 32.33
+pricing running Num  : 743
+avg sub running time : 4.351819e-02
+ 
+target : 20, weapon : 80
+14310000/1000000 = 14.31 (s) 
+optimal value is 0.2704
+All variable in opt solution of Master is Integer value
+pricing running time : 75.35
+pricing running Num  : 1936
+avg sub running time : 3.891887e-02
+ 
+target : 30, weapon : 120
+59440000/1000000 = 59.44 (s) 
+optimal value is 0.3086
+All variable in opt solution of Master is Integer value
+pricing running time : 129.40
+pricing running Num  : 3093
+avg sub running time : 4.183570e-02
+ 
+target : 40, weapon : 160
+221600000/1000000 = 221.6 (s) 
+optimal value is 0.3721
+All variable in opt solution of Master is Integer value
+pricing running time : 298.47
+pricing running Num  : 4767
+avg sub running time : 6.261225e-02
+ 
+target : 50, weapon : 200
+574580000/1000000 = 574.58 (s) 
+optimal value is 0.4368
+All variable in opt solution of Master is Integer value
+pricing running time : 650.77
+pricing running Num  : 6084
+avg sub running time : 1.069636e-01
+ 
+target : 5, weapon : 20
+880000/1000000 = 0.88 (s) 
+optimal value is 0.1446
+All variable in opt solution of Master is Integer value
+pricing running time : 14.25
+pricing running Num  : 287
+avg sub running time : 4.964265e-02
+ 
+target : 60, weapon : 240
+1759900000/1000000 = 1759.9 (s) 
+optimal value is 0.4915
+All variable in opt solution of Master is Integer value
+pricing running time : 1818.65
+pricing running Num  : 7698
+avg sub running time : 2.362501e-01
+ 
+target : 70, weapon : 280
+4159210000/1000000 = 4159.21 (s) 
+optimal value is 0.5403
+All variable in opt solution of Master is Integer value
+pricing running time : 4214.89
+pricing running Num  : 9180
+avg sub running time : 4.591381e-01
+ 
+target : 80, weapon : 320
+20638050000/1000000 = 20638 (s) 
+optimal value is 0.5982
+All variable in opt solution of Master is Integer value
+pricing running time : 20698.98
+pricing running Num  : 10999
+avg sub running time : 1.881897e+00
+ 

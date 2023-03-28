@@ -1,0 +1,422 @@
+Sender: LSF System <lsfadmin@c6u22n02>
+Subject: Job 416111: <psclp> in cluster <cluster1> Done
+
+Job <psclp> was submitted from host <ln01> by user <liguanda> in cluster <cluster1> at Wed Mar 15 11:29:25 2023
+Job was executed on host(s) <36*c6u22n02>, in queue <batch>, as user <liguanda> in cluster <cluster1> at Wed Mar 15 11:29:26 2023
+                            <36*c3u01n04>
+                            <36*c6u22n04>
+                            <36*a3u12n03>
+                            <36*a2u19n01>
+</share/home/liguanda> was used as the home directory.
+</share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate> was used as the working directory.
+Started at Wed Mar 15 11:29:26 2023
+Terminated at Wed Mar 15 17:16:00 2023
+Results reported at Wed Mar 15 17:16:00 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+mpirun ~/cmipwork/check/bin/lsf ./run.sh
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   48730.00 sec.
+    Max Memory :                                 9037 MB
+    Average Memory :                             8872.50 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   1 MB
+    Max Processes :                              207
+    Max Threads :                                508
+    Run time :                                   20793 sec.
+    Turnaround time :                            20795 sec.
+
+The output (if any) follows:
+
+thread 0 starts in c6u22n02
+thread 1 starts in c6u22n02
+thread 2 starts in c6u22n02
+thread 3 starts in c6u22n02
+thread 4 starts in c6u22n02
+thread 5 starts in c6u22n02
+thread 6 starts in c6u22n02
+thread 7 starts in c6u22n02
+thread 8 starts in c6u22n02
+thread 9 starts in c6u22n02
+thread 10 starts in c6u22n02
+thread 11 starts in c6u22n02
+thread 12 starts in c6u22n02
+thread 13 starts in c6u22n02
+thread 14 starts in c6u22n02
+thread 15 starts in c6u22n02
+thread 16 starts in c6u22n02
+thread 17 starts in c6u22n02
+thread 18 starts in c6u22n02
+thread 19 starts in c6u22n02
+thread 20 starts in c6u22n02
+thread 21 starts in c6u22n02
+thread 22 starts in c6u22n02
+thread 23 starts in c6u22n02
+thread 24 starts in c6u22n02
+thread 25 starts in c6u22n02
+thread 26 starts in c6u22n02
+thread 27 starts in c6u22n02
+thread 28 starts in c6u22n02
+thread 29 starts in c6u22n02
+thread 30 starts in c6u22n02
+thread 31 starts in c6u22n02
+thread 32 starts in c6u22n02
+thread 33 starts in c6u22n02
+thread 34 starts in c6u22n02
+thread 35 starts in c6u22n02
+thread 36 starts in c3u01n04
+thread 37 starts in c3u01n04
+thread 38 starts in c3u01n04
+thread 39 starts in c3u01n04
+thread 40 starts in c3u01n04
+thread 41 starts in c3u01n04
+thread 42 starts in c3u01n04
+thread 43 starts in c3u01n04
+thread 44 starts in c3u01n04
+thread 45 starts in c3u01n04
+thread 46 starts in c3u01n04
+thread 47 starts in c3u01n04
+thread 48 starts in c3u01n04
+thread 49 starts in c3u01n04
+thread 50 starts in c3u01n04
+thread 51 starts in c3u01n04
+thread 52 starts in c3u01n04
+thread 53 starts in c3u01n04
+thread 54 starts in c3u01n04
+thread 55 starts in c3u01n04
+thread 56 starts in c3u01n04
+thread 57 starts in c3u01n04
+thread 58 starts in c3u01n04
+thread 59 starts in c3u01n04
+thread 60 starts in c3u01n04
+thread 61 starts in c3u01n04
+thread 62 starts in c3u01n04
+thread 63 starts in c3u01n04
+thread 64 starts in c3u01n04
+thread 65 starts in c3u01n04
+thread 66 starts in c3u01n04
+thread 67 starts in c3u01n04
+thread 68 starts in c3u01n04
+thread 69 starts in c3u01n04
+thread 70 starts in c3u01n04
+thread 71 starts in c3u01n04
+thread 72 starts in c6u22n04
+thread 73 starts in c6u22n04
+thread 74 starts in c6u22n04
+thread 75 starts in c6u22n04
+thread 76 starts in c6u22n04
+thread 77 starts in c6u22n04
+thread 78 starts in c6u22n04
+thread 79 starts in c6u22n04
+thread 80 starts in c6u22n04
+thread 81 starts in c6u22n04
+thread 82 starts in c6u22n04
+thread 83 starts in c6u22n04
+thread 84 starts in c6u22n04
+thread 85 starts in c6u22n04
+thread 86 starts in c6u22n04
+thread 87 starts in c6u22n04
+thread 88 starts in c6u22n04
+thread 89 starts in c6u22n04
+thread 90 starts in c6u22n04
+thread 91 starts in c6u22n04
+thread 92 starts in c6u22n04
+thread 93 starts in c6u22n04
+thread 94 starts in c6u22n04
+thread 95 starts in c6u22n04
+thread 96 starts in c6u22n04
+thread 97 starts in c6u22n04
+thread 98 starts in c6u22n04
+thread 99 starts in c6u22n04
+thread 100 starts in c6u22n04
+thread 101 starts in c6u22n04
+thread 102 starts in c6u22n04
+thread 103 starts in c6u22n04
+thread 104 starts in c6u22n04
+thread 105 starts in c6u22n04
+thread 106 starts in c6u22n04
+thread 107 starts in c6u22n04
+thread 108 starts in a3u12n03
+thread 109 starts in a3u12n03
+thread 110 starts in a3u12n03
+thread 111 starts in a3u12n03
+thread 112 starts in a3u12n03
+thread 113 starts in a3u12n03
+thread 114 starts in a3u12n03
+thread 115 starts in a3u12n03
+thread 116 starts in a3u12n03
+thread 117 starts in a3u12n03
+thread 118 starts in a3u12n03
+thread 119 starts in a3u12n03
+thread 120 starts in a3u12n03
+thread 121 starts in a3u12n03
+thread 122 starts in a3u12n03
+thread 123 starts in a3u12n03
+thread 124 starts in a3u12n03
+thread 125 starts in a3u12n03
+thread 126 starts in a3u12n03
+thread 127 starts in a3u12n03
+thread 128 starts in a3u12n03
+thread 129 starts in a3u12n03
+thread 130 starts in a3u12n03
+thread 131 starts in a3u12n03
+thread 132 starts in a3u12n03
+thread 133 starts in a3u12n03
+thread 134 starts in a3u12n03
+thread 135 starts in a3u12n03
+thread 136 starts in a3u12n03
+thread 137 starts in a3u12n03
+thread 138 starts in a3u12n03
+thread 139 starts in a3u12n03
+thread 140 starts in a3u12n03
+thread 141 starts in a3u12n03
+thread 142 starts in a3u12n03
+thread 143 starts in a3u12n03
+thread 144 starts in a2u19n01
+thread 145 starts in a2u19n01
+thread 146 starts in a2u19n01
+thread 147 starts in a2u19n01
+thread 148 starts in a2u19n01
+thread 149 starts in a2u19n01
+thread 150 starts in a2u19n01
+thread 151 starts in a2u19n01
+thread 152 starts in a2u19n01
+thread 153 starts in a2u19n01
+thread 154 starts in a2u19n01
+thread 155 starts in a2u19n01
+thread 156 starts in a2u19n01
+thread 157 starts in a2u19n01
+thread 158 starts in a2u19n01
+thread 159 starts in a2u19n01
+thread 160 starts in a2u19n01
+thread 161 starts in a2u19n01
+thread 162 starts in a2u19n01
+thread 163 starts in a2u19n01
+thread 164 starts in a2u19n01
+thread 165 starts in a2u19n01
+thread 166 starts in a2u19n01
+thread 167 starts in a2u19n01
+thread 168 starts in a2u19n01
+thread 169 starts in a2u19n01
+thread 170 starts in a2u19n01
+thread 171 starts in a2u19n01
+thread 172 starts in a2u19n01
+thread 173 starts in a2u19n01
+thread 174 starts in a2u19n01
+thread 175 starts in a2u19n01
+thread 176 starts in a2u19n01
+thread 177 starts in a2u19n01
+thread 178 starts in a2u19n01
+thread 179 starts in a2u19n01
+send work 0 to thread 36 runs /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 5 20 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_5_20.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_5_20.err
+thread 72 ends!
+thread 150 ends!
+thread 108 ends!
+thread thread 76 ends!
+thread 163 ends!
+thread 109 ends!
+thread thread 79 ends!
+thread 179 ends!
+thread 113 ends!
+thread thread 99 ends!
+thread 145 ends!
+thread 118 ends!
+thread thread 104 ends!
+thread 146 ends!
+thread 119 ends!
+thread thread 75 ends!
+thread 147 ends!
+thread 130 ends!
+thread thread 77 ends!
+thread 148 ends!
+thread 110 ends!
+thread thread 78 ends!
+thread 149 ends!
+thread 114 ends!
+thread thread 80 ends!
+thread 152 ends!
+thread 115 ends!
+thread thread 81 ends!
+thread 155 ends!
+thread 116 ends!
+thread thread 83 ends!
+thread 159 ends!
+thread 117 ends!
+thread thread 85 ends!
+thread 160 ends!
+thread 120 ends!
+thread thread 86 ends!
+thread 164 ends!
+thread 121 ends!
+thread thread 87 ends!
+thread 174 ends!
+thread 122 ends!
+thread thread 89 ends!
+thread 144 ends!
+thread 123 ends!
+thread thread 91 ends!
+thread 165 ends!
+thread 124 ends!
+thread thread 92 ends!
+thread 166 ends!
+thread 125 ends!
+thread thread 93 ends!
+thread 168 ends!
+thread 128 ends!
+thread thread 95 ends!
+thread 169 ends!
+thread 131 ends!
+thread thread 96 ends!
+thread 170 ends!
+thread 132 ends!
+thread thread 97 ends!
+thread 172 ends!
+thread 133 ends!
+thread thread 100 ends!
+thread 157 ends!
+thread 135 ends!
+thread thread 102 ends!
+thread 167 ends!
+thread 136 ends!
+thread thread 105 ends!
+thread 171 ends!
+thread 111 ends!
+thread thread 106 ends!
+thread 173 ends!
+thread 112 ends!
+thread thread 73 ends!
+thread 175 ends!
+thread 126 ends!
+thread thread 74 ends!
+thread 177 ends!
+thread 127 ends!
+thread thread 82 ends!
+thread 178 ends!
+thread 134 ends!
+thread thread 84 ends!
+thread 137 ends!
+thread thread 88 ends!
+thread 138 ends!
+thread thread 90 ends!
+thread 139 ends!
+thread thread 94 ends!
+thread 140 ends!
+thread 98 ends!
+thread 141 ends!
+thread 101 ends!
+thread 142 ends!
+thread 103 ends!
+thread 143 ends!
+thread 153 ends!
+send work 1 to thread 1 runs /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 10 40 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_10_40.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_10_40.err
+send work 2 to thread 37 runs /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 20 80 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_20_80.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_20_80.err
+send work 3 to thread 2 runs /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 30 120 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_30_120.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_30_120.err
+send work 4 to thread 38 runs /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 40 160 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_40_160.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_40_160.err
+send work 5 to thread 3 runs /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 50 200 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_50_200.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_50_200.err
+send work 6 to thread 39 runs /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 60 240 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_60_240.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_60_240.err
+send work 7 to thread 4 runs /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 70 280 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_70_280.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_70_280.err
+send work 8 to thread 40 runs /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 80 320 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_80_320.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_80_320.err
+thread 156 ends!
+thread 5 ends!
+thread 6 ends!
+thread 7 ends!
+thread 8 ends!
+thread 9 ends!
+thread 158 ends!
+thread 10 ends!
+thread 161 ends!
+thread 11 ends!
+thread 162 ends!
+thread 12 ends!
+thread 176 ends!
+thread 13 ends!
+thread 107 ends!
+thread 14 ends!
+thread 15 ends!
+thread 151 ends!
+thread 16 ends!
+thread 154 ends!
+thread 17 ends!
+thread 18 ends!
+thread 19 ends!
+thread 20 ends!
+thread 21 ends!
+thread 22 ends!
+thread 23 ends!
+thread 24 ends!
+thread 25 ends!
+thread 26 ends!
+thread 27 ends!
+thread 28 ends!
+thread 29 ends!
+thread 129 ends!
+thread 30 ends!
+thread 31 ends!
+thread 32 ends!
+thread 33 ends!
+thread 34 ends!
+thread 35 ends!
+43 ends!
+57 ends!
+44 ends!
+46 ends!
+55 ends!
+60 ends!
+62 ends!
+63 ends!
+67 ends!
+47 ends!
+52 ends!
+65 ends!
+68 ends!
+69 ends!
+71 ends!
+50 ends!
+51 ends!
+56 ends!
+42 ends!
+49 ends!
+53 ends!
+64 ends!
+59 ends!
+41 ends!
+45 ends!
+48 ends!
+54 ends!
+58 ends!
+61 ends!
+66 ends!
+70 ends!
+thread 36 ends!
+thread 1 ends!
+thread 37 ends!
+thread 2 ends!
+thread 38 ends!
+thread 3 ends!
+thread 39 ends!
+thread 4 ends!
+work 0 costs 0 seconds in thread 36 run /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 5 20 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_5_20.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_5_20.err
+work 1 costs 0 seconds in thread 1 run /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 10 40 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_10_40.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_10_40.err
+work 2 costs 0 seconds in thread 37 run /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 20 80 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_20_80.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_20_80.err
+work 3 costs 0 seconds in thread 2 run /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 30 120 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_30_120.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_30_120.err
+work 4 costs 0 seconds in thread 38 run /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 40 160 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_40_160.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_40_160.err
+work 5 costs 0 seconds in thread 3 run /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 50 200 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_50_200.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_50_200.err
+work 6 costs 0 seconds in thread 39 run /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 60 240 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_60_240.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_60_240.err
+work 7 costs 0 seconds in thread 4 run /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 70 280 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_70_280.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_70_280.err
+work 8 costs 0 seconds in thread 40 run /share/home/liguanda/WTA-Problem/Code/WTA_CG/bin/WTA_CG 0 80 320 > /share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_80_320.out 2>/share/home/liguanda/WTA-Problem/Code/WTA_CG/cluster_test/standard_rate/WTA_CG_80_320.err
+thread 40 ends!
+
+
+PS:
+
+Read file <416111.errc> for stderr output of this job.
+
