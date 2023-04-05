@@ -194,54 +194,20 @@ int main(int argc, char *argv[]) {
       printf("------ Now test the subproblem -------\n");
       Scene_SSL temp_ssl;
       SubProblem temp_sub;
-      int _weapon_num = grm->weapon_num_m;
-      int _radar_num = grm->radar_num_k;
-      int _target_num = grm->target_num_n;
 
-      double* weapon_dual = new double[_weapon_num];
-      double* radar_dual = new double[_radar_num];
-      double* time_dual = new double[_target_num];
-      double* target_dual = new double[_target_num];
-
-      int target_index = 1;
-
-      int _seed = 0;
-      int _is_frac = 1;
-      for(int i = 0; i < 5; i++){
-         weapon_dual[i] = 0.0;
-         time_dual[i] = 0.0;
+      int test_size = 1;
+      vector<bool> is_correct(test_size, true);
+      for(int i = 0; i < test_size; i++){
+         temp_sub.Init_test(grm, 0, &parameter, i);
+         temp_sub.print_model();
+         is_correct[i] = temp_sub.check_correctness_by_enum();
       }
-      radar_dual[0] = -7.6;
-      time_dual[1] = -1.0;
-      target_dual[0] = 17.99;
-      target_dual[1] = 16.21;
-      target_dual[2] = 18.04;
-      target_dual[3] = 17.24;
-      target_dual[4] = 18.23;
-
-      temp_sub.Init(grm, target_index, weapon_dual, radar_dual, time_dual[target_index], target_dual[target_index], _seed, _is_frac, &parameter);
-
-      // This block is used to check the correctness of subproblem
-      vector<int> temp_enum_opt_sol(grm->ssl_num, 0);
-      double temp_enum_opt_val = 0;
-
-      //temp_sub.print_debug();
-
-      temp_sub.cal_optimal_scene(temp_ssl);
-      // This block is used to test find the solution by enumeration
-
-      temp_sub.cal_optimal_scene_by_enum(temp_enum_opt_sol, temp_enum_opt_val);
+      for(int i = 0; i < test_size; i++){
+         if(is_correct[i] = true){
+            printf("instance %d is correct\n", i);
+         }
+      }
       temp_sub.Delete();
-      
-      delete[] weapon_dual;
-      delete[] radar_dual;
-      delete[] time_dual;
-      delete[] target_dual;
-
-   //temp_sub.test_subproblem(wta, 1);
-   //temp_sub.print_debug();
-
-
    //This block is used to test cal_constraint_by_x(int weapon_set) and find_init_cut() function
    /* 
       Test is finished
@@ -297,22 +263,6 @@ int main(int argc, char *argv[]) {
    printf("---------- FINISHED --------\n");
    delete grm;
    return 0;
-
-   // Use this to test different classes
-/*
-   std::vector<int> _scene = {1,2,3,4};
-   Scene test_scene(4, _scene);
-   ScenePool test_scene_pool;
-
-   Node test_node;
-
-   test_pricing.Set(test_node);
-   int num_scene = test_pricing.scenes.size();
-
-   LP_ALL_IN_ONE lp(5,5);  
-   lp.PRINT_LP_INFO();
-*/
-
 }
 
 void getCombinations(vector<vector<int>>& All_num, int col_num, int radar_capacity, int weapon_start, vector<int> weapon_capacity, int& counter_scene, int row_num, int current_radar, double& opt_val,vector<int>& opt_sol) {

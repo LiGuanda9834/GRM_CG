@@ -53,8 +53,6 @@ public:
     double          rhs;
 
 
-
-
     /**
      * @brief   to set algorithm param
      * @todo    Add these params to the parameter of total algorithm
@@ -73,6 +71,7 @@ public:
     ~SubProblem() = default;
 
     void Init(GRM* grm_, int t_index, double* w_dual_ui, double* r_dual, double time_dual, double t_dual_vj, int seed, int is_fractional, AlgoParameter* param);
+    void Init_test(GRM* grm_, int t_index, AlgoParameter* param, int seed_);
 
     double destroy_prob();
 
@@ -98,16 +97,21 @@ public:
    // int test_subproblem(WTA* temp_WTA, int test_target_num) ;
 
    // 之后将该返回值改为return status 确保能够得到问题的求解状态
-   vector<int> cal_optimal_scene(Scene_SSL& scene_ssl);
+    vector<int> cal_optimal_scene(Scene_SSL& scene_ssl);
+
+   // Use this function to get the optimal sol and val form OA to compare with Enum
+    void cal_optimal_scene_by_OA(vector<int>& opt_sols, double& opt_val);
    
    // Use this function to varify the correctness of the Subproblem, test by enumeration
     void cal_optimal_scene_by_enum(vector<int>& opt_sols, double& opt_val);
 
-   // A bad name, need change
+
+
+   // Check if the opt of current optval is geq zero, also set sub_status to the same bool value
     bool is_optval_geq_zero();
 
    // Use this to check weather a solution is frac or integer
-    bool print_solution();
+    bool is_x_all_integer();
 
    // use this to print current x, cut_ind, cut_val, rhs
     void print_LP_info(); 
@@ -117,6 +121,9 @@ public:
 
     // Use this to print the model and temp x
     void print_debug();
+
+    // Use this to check if the OA algorithm find the best solution by enumeration
+   bool check_correctness_by_enum();   
    
    /**
     * @brief
@@ -135,7 +142,8 @@ public:
 
    void __enumerate_all_scene(vector<vector<int>>& All_num, int col_num, int radar_capacity, int weapon_start, vector<int> weapon_capacity, int& counter_scene, int row_num, int current_radar, double& opt_val, vector<int>& opt_sol);
 
-    void Delete();
+   
+   void Delete();
 
    inline int cal_weapon_index(const int ssl_index) const
    {
@@ -198,10 +206,6 @@ wherefrom == CPX_CALLBACK_MIP_CUT_FEAS ) */
    /* Data structure to add a Benders' cut to the master ILP */
    double *cutval;
    int *cutind;
-
-
-   
-
 } USER_CBHANDLE;
 
 
