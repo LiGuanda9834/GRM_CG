@@ -63,6 +63,7 @@ class Master {
       bool Solve();
       void GetDualValues(std::vector<double> &dual);
       void AddCol(std::vector<Scene_SSL> &scene_ssls);
+      
       void AddSlackToCardinality(){}
       void GetSol(Node &node);
 

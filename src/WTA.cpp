@@ -274,6 +274,36 @@ GRM::GRM(int n_, int m_, int k_, int seed_){
     seed = seed_;
 }
 
+GRM::GRM(FILE* fin){
+    printf("Initialzed GRM by read file \n");
+    
+    /*
+    int status = 0;
+    int f = fscanf (fin, "%d", &target_num_n);
+    printf("num : %d\n", weapon_num_m);
+    if(!target_value){
+        printf("new Again !!!!!!!!!!!!!!!!\n");
+        target_value = new double[target_num_n];
+    }
+    for(int i = 0; i < target_num_n; i++)
+    {
+        fscanf (fin, "%lf", &target_value[i]);
+        printf("%d:%.0f\n", i, target_value[i]);
+    }
+    for(int i = 0; i < target_num_n; i++)
+    {
+        if(!probability_matrix[i]){
+            probability_matrix[i] = new double[target_num_n];
+        }
+        for(int j = 0; j < weapon_num_m; j++)
+        {
+            fscanf(fin, "%lf", &(probability_matrix[i][j]));
+            //printf("%.2f\n", p[i][j]);
+        }
+    }
+    */
+}
+
 
 
 
@@ -306,26 +336,9 @@ int GRM::Init_by_random(int seed){
     }
     return return_value;
 }
-// Used to Delete the new array, abundoned now
-/*
-    int GRM::Delete(){
-        int return_value = 1;
-        if(this){
-            if(target_value){
-                delete[] target_value;
-            }
-            if(probability_matrix){
-                for(int t = 0; t < target_num_n; t++){
-                    if(probability_matrix[t]){
-                        delete[] probability_matrix[t];
-                    }
-                }
-                delete[] probability_matrix;
-            }
-        }
-        return return_value;
-    }
-*/
+
+
+
 
 int GRM::print_model(){
     int return_value = 1;

@@ -103,6 +103,7 @@ public:
     
     GRM(int n_, int m_, int k_, int seed_);    // target, weapon, radar
     //GRM(int n_, int m_);
+    GRM(FILE* fin);
     ~GRM();
 
 
@@ -110,6 +111,7 @@ public:
 
     // Initialize 
     int Init_by_random(int seed);
+
     //void Init_sparse(int n_, int m_, int sparsity, int seed);
     //void Init_readfile(FILE* fin, int seed_);
 
