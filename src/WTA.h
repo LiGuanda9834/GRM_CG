@@ -103,7 +103,7 @@ public:
     
     GRM(int n_, int m_, int k_, int seed_);    // target, weapon, radar
     //GRM(int n_, int m_);
-    GRM(FILE* fin);
+    GRM(int instance_id);
     ~GRM();
 
 

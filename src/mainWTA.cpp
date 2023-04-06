@@ -4,6 +4,7 @@
 #include "Pricing.h"
 #include "Scene.h"
 #include "SubProblem.h"
+#include "TestClass.h"
 #include <string>
 #include <ctime>
 
@@ -92,6 +93,7 @@ int main(int argc, char *argv[]) {
   int temp_seed = 0;
 
 
+
    if(argc > 1){
       MODE = arg_1;
    }
@@ -117,61 +119,49 @@ int main(int argc, char *argv[]) {
    GRM* grm = new GRM(grm_target_num, grm_weapon_num, grm_radar_num, 1);
    grm->Init_by_random(temp_seed);
    grm->print_model();
+
+   TestClass test(grm, parameter);
    
 
    if(MODE == 3){
       printf("Quick Test \n");
-      // Test Scene
-      /*
-         vector<int> new_SSL_1 = {1,0,0,1,0,0,1,0};
-         vector<int> new_SSL_2 = {0,2,0,1,0,0,0,0};
-         vector<int> new_SSL_3 = {0,0,0,0,0,3,0,0};      
-         Scene_SSL temp_ssl_1(5, new_SSL_1, 4, 2);
-         Scene_SSL temp_ssl_2(3, new_SSL_2, 4, 2);
-         Scene_SSL temp_ssl_3(5, new_SSL_3, 4, 2);
-         SSL_Pool temp_ssl_pool;
-         temp_ssl_pool.add_scene(temp_ssl_1);
-         temp_ssl_pool.add_scene(temp_ssl_2);
-         temp_ssl_pool.add_scene(temp_ssl_3);
-      */
-      /*
-         temp_ssl_pool.print_all_scene();
-         temp_ssl_pool.print_scene_by_target(6);
+      string Path = "/share/home/liguanda/WTA-Problem/Code/GRM_CG/data/CSV/";
+      string Name = "instance" + std::to_string(1) + ".csv";
+      string file_name_str = Path + Name;
+      char* test_file_char = (char*)file_name_str.c_str();
+      std::cout << test_file_char << endl;
+      FILE* fin = NULL;
+      fin = fopen(test_file_char, "r");
+      if(fin == NULL){
+         printf("Open file Failed! \n");
+      }
+      else{
+         int T_num = 0, W_num = 0, R_num = 0;
+         int W_capacity, R_capacity = 0;
+         fscanf (fin, "%d,%d,%d,", &T_num, &W_num, &R_num);
+         fscanf (fin, "%d, %d,", &W_capacity, &R_capacity);
 
-
-
-      */
-     /*
-      for(int i = 0; i < temp_ssl_pool.size(); i++){
-         double temp_qjs = grm->set_ssl_qjs(temp_ssl_pool[i]);
-         //printf("Now calculate ssl %d \n", i);
-         //temp_ssl_pool[i].PrintScene();
+         printf("T = %d, W = %d, R = %d\n", T_num, W_num, R_num);
+         printf("Weapon capacity : %d, Radar capacity : %d\n", W_capacity, R_capacity);
+         for(int i = 0; i < T_num; i++){
+            double temp_value;
+            fscanf (fin, "%lf,", &temp_value);
+            printf("%d value : %lf\n",i ,temp_value);
+         }
+         int ssl_num = W_num * R_num;
+         
+         for(int i = 0; i < T_num; i++){
+            for(int j = 0; j < ssl_num; j++){
+               double temp_value;
+               fscanf (fin, "%lf,", &temp_value);
+               printf("%lf ",temp_value);
+            }
+            printf("\n");
+         }
 
       }
-     */
-      int temp_col_num = grm->weapon_num_m;
-      int temp_row_num = grm->radar_num_k;
-
-      int temp_radar_capa = 8;
-      vector<vector<int>> test_enum(temp_row_num, vector<int>(temp_col_num, 0));
-      vector<int> w_capacity(temp_col_num, 4);
-
-      int counter = 0;
-      double best = 100000000;
-
-      vector<int> opt_sol(temp_col_num * temp_row_num, 0);
-      
-      
-      getCombinations(test_enum, temp_col_num, temp_radar_capa, 0, w_capacity, counter, temp_row_num, 0, best,  opt_sol);
-
-      printf("All : %d\n", counter);
-      printf("Best_opt_val : %.2f\n", best);
    }
-   // Use This block to Initialize the different classes
-   /*
-      Master test_master(wta, parameter);
-      Pricing test_pricing(wta, parameter);
-   */ 
+
 
    if(MODE == BAC){
       BranchAndCut test_BAC(grm, parameter);

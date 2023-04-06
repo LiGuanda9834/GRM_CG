@@ -48,6 +48,7 @@ HEADER	 		= 	Solution.h \
 					Master.h \
 					Tree.h \
 					BranchAndCut.h \
+					TestClass.h\
 # OBJ文件
 LIBOBJ 			= 	WTA.o \
 					SubProblem.o \
@@ -55,6 +56,7 @@ LIBOBJ 			= 	WTA.o \
 					Master.o \
 					BranchAndCut.o \
 					Scene.o\
+					TestClass.o\
 
 # main函数的OBJ文件
 MAINOBJ 		= 	mainWTA.o

@@ -264,7 +264,7 @@ GRM::GRM(int n_, int m_, int k_, int seed_){
     */
     time_matrix = new double*[ssl_num]; 
     for(int i = 0; i < ssl_num; i++)
-    { 
+    {
         time_matrix[i] = new double[target_num_n];
         for(int j = 0; j < target_num_n; j++){
             time_matrix[i][j] = 0;
@@ -274,9 +274,48 @@ GRM::GRM(int n_, int m_, int k_, int seed_){
     seed = seed_;
 }
 
-GRM::GRM(FILE* fin){
+GRM::GRM(int instance_id){
     printf("Initialzed GRM by read file \n");
-    
+    string Path = "/share/home/liguanda/WTA-Problem/Code/GRM_CG/data/CSV/";
+    string Name = "instance" + std::to_string(instance_id) + ".csv";
+    string file_name_str = Path + Name;
+    char* test_file_char = (char*)file_name_str.c_str();
+    std::cout << test_file_char << std::endl;
+    FILE* fin = NULL;
+    fin = fopen(test_file_char, "r");
+    if(fin == NULL){
+        printf("Open file Failed! Check the file name\n");
+    }
+    else{
+        fscanf (fin, "%d,%d,%d,", &target_num_n, &weapon_num_m, &radar_num_k);
+        ssl_num = weapon_num_m * radar_num_k;
+
+        fscanf (fin, "%d, %d,", &weapon_capacity, &radar_capacity);
+
+        target_value = new double[target_num_n];
+        for(int i = 0; i < target_num_n; i++){
+            double temp_value;
+            fscanf (fin, "%lf,", &target_value[i]);
+            printf("%d value : %lf\n",i ,temp_value);
+        }
+        probability_matrix = new double*[ssl_num]; 
+
+        for(int i = 0; i < ssl_num; i++)
+        { 
+            probability_matrix[i] = new double[target_num_n];
+            for(int j = 0; j < target_num_n; j++){
+                probability_matrix[i][j] = 0;
+            }
+        }
+
+        for(int j = 0; j < ssl_num; j++){
+            double temp_value;
+            fscanf (fin, "%lf,", &temp_value);
+            printf("%lf ",temp_value);
+        }
+        printf("\n");
+        }
+    }
     /*
     int status = 0;
     int f = fscanf (fin, "%d", &target_num_n);
@@ -302,7 +341,7 @@ GRM::GRM(FILE* fin){
         }
     }
     */
-}
+
 
 
 
