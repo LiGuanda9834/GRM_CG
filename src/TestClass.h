@@ -26,11 +26,19 @@ public:
         printf("Now Test Test Class \n");
     }
 
-// 
+// Test SubProblem
+    void test_sp_findInitCut();
+    void test_sp_correctness();
 
 
 // Test Scene and ScenePool
     void test_scene_addSceneToPool();
+
+
+// Print Information
+    void print_main_time(clock_t start_clock, clock_t end_clock);
+    void pirnt_main_param();
+    void print_main_info(int MODE_);
 
 
 // Other 
@@ -45,7 +53,7 @@ public:
     GRM* grm;
     Master* master;
     Pricing* pricing;
-    SubProblem* sub;
+    SubProblem* sp;
     AlgoParameter param;
 };
 

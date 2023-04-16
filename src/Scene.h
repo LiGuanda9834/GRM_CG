@@ -83,7 +83,11 @@ class Scene_SSL{
 
       // Set from [1,0,1,0,0,1,0,0] to [1,3,6], 
       Scene_SSL(int _j, std::vector<int> _scene, int m, int k);
+
+      //Init a scene only has one ssl with w(w_index) and r(r_index), only assign it once
+      Scene_SSL(int t_index, int w_index, int r_index, int m, int k);
       
+
       // Just like construct function, set all the 
       void Set_Scene(int _j, std::vector<int> _scene, int m, int k);
       

@@ -138,7 +138,7 @@ bool BranchAndCut::InitialColumns(
 )
 {  
    // pricing.Solve(/*no dual variables*/);
-   master.AddCol(pricing.scenes_ssl);
+   master.AddCol(pricing.valid_scenes_ssl);
    return true;
 }
 
@@ -156,6 +156,7 @@ bool BranchAndCut::ColumnGeneration(
       return false;
    }
    master.ssl_pool.print_all_scene();
+   return true;
    master.GetDualValues(dual);
    int dual_num = dual.size();
    printf("print dual before solve the subproblem\n");
@@ -166,7 +167,7 @@ bool BranchAndCut::ColumnGeneration(
    pricing.Solve(dual);
    /* add column(s) gradually to master problem */
    //while (master.Check_is_scenes_new(pricing.scenes))  /* while routes empty, stop*/
-   while (pricing.scenes_ssl.size() != 0)  /* while routes empty, stop*/
+   while (pricing.valid_scenes_ssl.size() != 0)  /* while routes empty, stop*/
    {
       clock_t start_one_master, after_add_before_master, after_master_before_pricing, end_one_master;
       start_one_master = clock();
@@ -174,7 +175,7 @@ bool BranchAndCut::ColumnGeneration(
       
       printf("\n\n--------------Now Solve a new Master Problem-------------\n");
       /* Add path(s) from the candidate pool */
-      master.AddCol(pricing.scenes_ssl);
+      master.AddCol(pricing.valid_scenes_ssl);
       after_add_before_master = clock();
 
       master.Solve(); 

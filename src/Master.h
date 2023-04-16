@@ -59,42 +59,60 @@ class Master {
       Master(GRM* _grm, const AlgoParameter &param);
       ~Master();
 
+
+
+      // Branch and Bound
       void Set(const Node &node);
-      bool Solve();
-      void GetDualValues(std::vector<double> &dual);
-      void AddCol(std::vector<Scene_SSL> &scene_ssls);
-      
+      void DelSlack(){}
       void AddSlackToCardinality(){}
       void GetSol(Node &node);
-
-      // Delete a variable ??   
-      void DelSlack(){}
-
-      void Initialize_HIGHS();
-
-      // Get a variable value ??
       double GetSlackValue(){return 1;};
-      
+
+
+      // This block is used to Initilze and solve master with HIGHS
+      void Initialize_HIGHS();
+      void AddCol(std::vector<Scene_SSL> &scene_ssls);
+      bool Solve();
+
+      // auxiliary methods to help MP
+      void __add_similar_rows(int& n_rows_, vector<double>& row_lowers_, vector<double>& row_uppers_, int new_rows_nums, double temp_lower, double temp_upper);
+
+      int __find_init_scene(vector<Scene_SSL>& init_scenes, int& num_cols, const int target_num, const int radar_capa, const int weapon_capa);
+      int __cal_onessl_matrixAndCost(Scene_SSL temp_SSL, int& target_nnz, vector<int>& target_nz_rows, vector<double>& target_nz_vals, double& col_cost);
+      int __add_cols_matrixAndCost(vector<Scene_SSL> all_scenes, vector<int>& add_nnz, vector<int>& add_nz_rows, vector<double>& add_nz_vals, vector<double>& col_costs);
+      int __init_col_LbUb(const int init_col_num, vector<double>& col_lbs, vector<double>& col_ubs, double lb, double ub);
+
+
+
+      // with Pricing
+      void GetDualValues(std::vector<double> &dual);
+
+      //print and write
+      void print_current_solution();
+      //    Writes the active model to the file specified by filename.
+      void writeModel(const std::string &name = "master.lp"){}
+
       // Use to check if the new scenes is repeated
       // @deprecated
       bool Check_is_scenes_new(std::vector<Scene_SSL> &scenes);
 
-      // Writes the active model to the file specified by filename.
-      void writeModel(const std::string &name = "master.lp"){}
+      bool check_is_integer_solution();
 
        int numCol() const {
-        return ssl_pool.size();
+         return ssl_pool.size();
        }
 
        double cal_obj_val();
 
-       void print_current_solution();
 
-       bool check_is_integer_solution();
-
+      // other auxiliary methods
        int convert_sparse_to_compress_int(vector<int> origin_vector, int& nnz, vector<int>& nz_pos, vector<int>& nz_val);
 
       int convert_sparse_to_compress_double(vector<double> origin_vector, int& nnz, vector<int>& nz_pos, vector<double>& nz_val);
+
+      int __add_conpress_double(int& odd_nz_num, vector<int>& old_nz_indices, vector<double>& old_nz_vals, int add_nz_num, vector<int> add_nz_indices, vector<double> add_nz_vals, int add_base_num);
+
+      int __add_conpress_int(int& odd_nz_num, vector<int>& old_nz_indices, vector<double>& old_nz_vals,int add_nz_num, vector<int> add_nz_indices, vector<int> add_nz_vals, int add_base_num);
 
       bool is_double_integer(double temp_double){
          int rounded = int(round(temp_double));

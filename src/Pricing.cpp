@@ -7,17 +7,28 @@
 Pricing::Pricing(GRM* _grm, AlgoParameter _parameter) 
 {
    grm = _grm;
-   ptrNode = NULL;
-   
-   scenes_ssl = {};
-   states = {};
-   int n = grm->weapon_num_m;
-   int m = grm->weapon_num_m;
-   int k = grm->radar_num_k;
-
-   int dual_num = 2 * n + m + k;
-   dual_value = new double[dual_num];
    parameter = _parameter;
+   sp_num = _grm->target_num_n;
+   is_rcLeqZero = new bool[sp_num];
+   is_spCorrect = new bool[sp_num];
+   for(int i = 0; i < sp_num; i++){
+      is_rcLeqZero[i] = false;
+      is_spCorrect[i] = true;
+   }
+
+   dual_value_num = 0;
+   dual_vals = NULL;
+   
+   dual_block_num = 0;
+   splited_dual_block_size = {};
+   splited_dual_vals = {};
+   all_sp_ssl = {};
+   valid_scenes_ssl = {};
+
+   ptrNode = NULL;
+   states = {};
+   is_consider_time_dual = parameter.objIncludeTime;
+   is_check_correctness = parameter.pricingCheckCorrectness;
 }
 
 
@@ -26,21 +37,146 @@ Pricing::Pricing(GRM* _grm, AlgoParameter _parameter)
  * @todo Use a greedy method or more flexible solution
 */
 
+
+/**
+ * @brief Solve the subproblems of target t
+ * @param : dual values, conflict information
+ * @return column index 
+ */
+
+
+
+
+
+void Pricing::Solve(vector<double> &dual) 
+{
+   vector<Scene_SSL> temp_scenes;
+   // Set constant and argument
+   int _seed = parameter.seed; 
+   int _is_frac = parameter.spCutAllowFrac;
+
+   int DEBUG_CORRECT = 0;
+
+   // get dual from mp, divide dual to weapon, radar, target, time(if neccessary)
+   get_and_split_dual(dual);
+   // generate a scene for each target from subproblem, (May check the correctness of the sp sol)
+   find_all_sp_sol(_seed, _is_frac);
+   // check all scenes generated from sp is valid
+   pick_validate_scenes();
+   printf("\nIn this pricing step we gain %d scenes\n", valid_scenes_ssl.size());
+}
+
+
+void Pricing::get_and_split_dual(vector<double>& dual){
+   dual_value_num = dual.size();
+   dual_vals = new double[dual_value_num];
+   for(int i = 0; i < dual_value_num; i++){
+      dual_vals[i] = dual[i];
+   }
+
+   int m = grm->weapon_num_m;
+   int n = grm->target_num_n;
+   int k = grm->radar_num_k;
+   
+   int current_pos = 0;
+   double* weapon_dual = new double[m];
+   double* radar_dual = new double[k];
+   double* target_dual = new double[n];
+
+   printf("weapon dual : ");
+   __split_dual(m, weapon_dual, current_pos);
+
+   printf("\nradar dual : ");
+   __split_dual(k, radar_dual, current_pos);
+
+   printf("\ntarget dual : ");
+   __split_dual(n, target_dual, current_pos);
+
+   if(parameter.objIncludeTime){
+      double* time_dual = new double[n];
+      printf("\ntime dual : ");
+      __split_dual(n, time_dual, current_pos);
+   }
+}
+
+void Pricing::__split_dual(int current_block_size, double* current_dual_block, int& dual_check_pos){
+   for(int i = 0; i < current_block_size; i++){
+      current_dual_block[i] = dual_vals[dual_check_pos];
+      dual_check_pos++;
+   }
+   dual_block_num++;
+   splited_dual_block_size.push_back(current_block_size);
+   splited_dual_vals.push_back(current_dual_block);
+
+   bool print_vals = true;
+   if(print_vals){
+      for(int i = 0; i < current_block_size; i++){
+         printf("%.2f ", current_dual_block[i]);
+      }
+   }
+}
+
+void Pricing::find_all_sp_sol(int _seed, int _is_frac){
+   for(int t = 0; t < sp_num ; t++)
+   {  
+      printf("\nNow calculate the scene %d\n", t);
+      SubProblem sub_prob;
+      double* weapon_dual_ = splited_dual_vals[0];
+      double* radar_dual_ = splited_dual_vals[1];
+      double target_dual_ = splited_dual_vals[2][t];
+      double time_dual_ = 0;
+
+      if(is_consider_time_dual){
+         double time_dual_ = splited_dual_vals[3][t];
+      }
+      
+      sub_prob.Init(grm, t, weapon_dual_, radar_dual_, time_dual_, target_dual_, _seed, _is_frac, &parameter);
+
+
+      Scene_SSL temp_scene;
+      vector<int> solve_by_OA = sub_prob.cal_optimal_scene(temp_scene);
+      all_sp_ssl.push_back(temp_scene);
+
+      double real_redcost = sub_prob.cal_reduced_cost(temp_scene);
+      printf("opt_val : %e, real_redcost : %e\n", sub_prob.sub_optval, real_redcost);
+      if(real_redcost < -1e-8){
+         printf("---- This target doesn't satisfied -----\n");
+         is_rcLeqZero[t] = true; 
+      }
+
+      if(is_check_correctness){
+         is_spCorrect[t] = sub_prob.check_correctness_by_enum();
+      }
+      sub_prob.Delete();
+   }
+}
+
+
+void Pricing::pick_validate_scenes(){
+   
+   for(int i = 0; i < sp_num; i++){
+      if(is_rcLeqZero[i]){
+         valid_scenes_ssl.push_back(all_sp_ssl[i]);
+      }
+   }
+}
+
+
 void Pricing::Set(Node &node) {
    ptrNode = &node;
     int weapon_num = grm->weapon_num_m;
     int target_num = grm->target_num_n;
     int radar_num = grm->radar_num_k;
     int radar_cap = grm->radar_capacity;
-
     int ssl_num = grm->ssl_num;
-
+   // @deprecated
+   // method, just random assign a feasible solution
+   /*
    bool simple_method = 1;
    if(target_num != weapon_num || radar_num * 5 != weapon_num){
       printf("target : radar : weapon != 5:1:5\n");
       printf("Master Problem Initilized should be rewirte\n");
    }
-   // current method, just random assign a feasible solution
    if(simple_method){
       for(int j = 0; j < target_num; j++){
          int radar_index_ = j / 5;
@@ -58,145 +194,26 @@ void Pricing::Set(Node &node) {
     //find one scene for each target by greedy
    else{
    }
-}
-/**
- * @brief Solve the subproblems of target t
- * @param : dual values, conflict information
- * @return column index 
- */
-void Pricing::Solve(vector<double> &dual) 
-{
-   //printf("\nThe name of the Problem is %s \n", parameter.problem_name);
-   scenes_ssl = {};
-   vector<Scene_SSL> temp_scenes = {};
-   bool all_constraint_satisfied = true;
-
-   int m = grm->weapon_num_m;
-   int n = grm->target_num_n;
-   int k = grm->radar_num_k;
-
-
-   bool* each_constraint_satisfied = new bool[n];
-   for(int i = 0; i < n; i++){
-      each_constraint_satisfied[i] = true;
-   }
-   
-   // get dual from master problem
-   for(int i = 0; i < dual.size(); i++){
-      dual_value[i] = dual[i];
-   }
-
-   double* weapon_dual = new double[m];
-   double* radar_dual = new double[k];
-   double* time_dual = new double[n];
-   double* target_dual = new double[n];
-
-   printf("weapon dual : ");
-   for(int i = 0; i < m; i++){
-      weapon_dual[i] = dual_value[i];
-      printf("%.2f ", weapon_dual[i]);
-   }
-   printf("\nradar dual : ");
-   for(int i = 0; i < k; i++){
-      radar_dual[i] = dual_value[i + m];
-      printf("%.2f ", radar_dual[i]);
-   }
-   printf("\ntime dual : ");
-   for(int i = 0; i < n; i++){
-      time_dual[i] = dual_value[i + m + k];
-      printf("%.2f ", time_dual[i]);
-   }
-   printf("\ntarget dual : ");
-   for(int i = 0; i < n; i++){
-      target_dual[i] = dual_value[i + m + k + n];
-      printf("%.2f ", target_dual[i]);
-   }
-
-   // Use this to test subproblem by enumerate
-   vector<int> Is_correct(n, 1);
-   // if This Flag == 1, test correct by enumeration
-   int DEBUG_CORRECT = 0;
-
-
-   int _seed = 0; 
-   int _is_frac = 1;
-   AlgoParameter temp_parameter = parameter;
-
-   // generate a scene for each target from subproblem
-   
-
-
-   for(int t = 0; t < n ; t++)
-   {  
-      printf("\nNow calculate the scene %d\n", t);
-      SubProblem sub_prob;
-      sub_prob.Init(grm, t, weapon_dual, radar_dual, time_dual[t], target_dual[t], _seed, _is_frac, &parameter);
-      Scene_SSL temp_scene;
-      vector<int> solve_by_OA = sub_prob.cal_optimal_scene(temp_scene);
-      if(DEBUG_CORRECT){
-         //vector<int> solve_by_Enum = sub_prob.cal_optimal_scene_by_enum();
-         printf("ssl_num : %d\n", sub_prob.ssl_num); 
-         for(int i = 0; i < sub_prob.ssl_num; i++){
-            //if(solve_by_OA[i] != solve_by_Enum[i]){
-            //   Is_correct[i] = 0;
-            //}
-         }
-      }
-      temp_scenes.push_back(temp_scene);
-      // @todo decide weather do not push scene when one target optval > 0 or all  
-      // 子问题最优解大于0 说明此时对偶约束已经满足 即不需要添加该场景
-      
-      //bool target_j_satisfied = sub_prob.is_optval_geq_zero();
-
-      double real_redcost = sub_prob.cal_reduced_cost(temp_scene);
-      //temp_scene.PrintScene();
-      printf("opt_val : %e, real_redcost : %e\n", sub_prob.sub_optval, real_redcost);
-      if(!(real_redcost > -1e-8)){
-         printf("---- This target doesn't satisfied -----\n");
-         all_constraint_satisfied = false;
-         each_constraint_satisfied[t] = false; 
-      }
-      sub_prob.Delete();
-   }
-
-
-   if(DEBUG_CORRECT){
-      for(int i = 0; i < n; i++){
-         if(Is_correct[i]){
-            printf("target %d is Correct!\n", i);
-         }
-      }
-   }
-
-   // 0 for add all if all unfinished
-   // 1 for add one if one unfinished
-   int add_mode = 1;
-   if(add_mode == 0)
-   {
-      if(!all_constraint_satisfied){
-         scenes_ssl = temp_scenes;
-      }
-   }
-   if(add_mode == 1)
-   {
-      for(int t = 0; t < n; t++){
-         if(!each_constraint_satisfied[t]){
-            scenes_ssl.push_back(temp_scenes[t]);
-         }
-      }
-   }
-   
-   printf("\nIn this pricing step we gain %d scenes\n", scenes_ssl.size());
-   delete[] weapon_dual;
-   delete[] target_dual;
-   delete[] time_dual;
-   delete[] radar_dual;
-   delete[] each_constraint_satisfied;
+   */
 }
 
 Pricing::~Pricing(){
-   if(dual_value){
-      delete[] dual_value;
-      dual_value = NULL;
+   if(is_rcLeqZero){
+      delete[] is_rcLeqZero;
+      is_rcLeqZero = NULL;
+   }
+   if(is_spCorrect){
+      delete[] is_spCorrect;
+      is_spCorrect = NULL;
+   }
+   if(dual_vals){
+      delete[] dual_vals;
+      dual_vals = NULL;
+   }
+   for(int i = 0; i < splited_dual_vals.size(); i++){
+      if(splited_dual_vals[i]){
+         delete[] splited_dual_vals[i];
+         splited_dual_vals[i] = NULL;
+      }
    }
 }

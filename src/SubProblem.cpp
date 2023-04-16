@@ -255,6 +255,21 @@ void SubProblem::cal_constraint_by_x(vector<int> ssl_sets){
    return;
 }
 
+
+void SubProblem::__cal_current_constraint(){
+   // create x by weapon sets
+   for(int i = 0; i < ssl_num; i++){
+      //printf("weapon index: %d\n", weapon_index);
+      cutind[i] = i;
+      cutval[i] = cal_cutval(i);
+   }
+   // calculate coef by x
+   rhs = cal_rhs();
+   cutind[ssl_num] = ssl_num;
+   cutval[ssl_num] = -1;
+   return;
+}
+
 void SubProblem::print_LP_info(){
    // m is the col num without OA param eta
    int m = ssl_num;
@@ -527,6 +542,9 @@ wherefrom == CPX_CALLBACK_MIP_CUT_FEAS ) */
          printf("%.2f\t", x[i]);
       }
       printf("\n");
+
+      printf("Now pass the scene to the Scene pool : \n");
+      scene_ssl.PrintScene();
       }
    sub_optval =  x[num_x_cols - 1];
 
@@ -555,13 +573,8 @@ TERMINATE:
          status = local_status;
       }
    }
-   scene_ssl.Set_Scene(target_index, best_ssl_set, m, k);
 
-   int DEBUG_SCENE = 1;
-   if(DEBUG_SCENE){
-      printf("Now pass the scene to the Scene pool : \n");
-      scene_ssl.PrintScene();
-   }
+   scene_ssl.Set_Scene(target_index, best_ssl_set, m, k);
    return best_ssl_set;
    //return status;
 }
@@ -1053,9 +1066,9 @@ benders_callback  (CPXCENVptr env, void *cbdata, int wherefrom,
    }
 
 
-
-
-sub_prob->rhs = sub_prob->cal_rhs();
+   sub_prob->__cal_current_constraint();
+   /*
+   sub_prob->rhs = sub_prob->cal_rhs();
    for (int i = 0; i < x_num_; ++i) 
    {
       sub_prob->cutind[i] = i;
@@ -1063,6 +1076,7 @@ sub_prob->rhs = sub_prob->cal_rhs();
    }
    sub_prob->cutind[x_num_] = x_num_;
    sub_prob->cutval[x_num_] = -1;   
+   */
 
    DEBUG_OA_CUT = 0;
    if(DEBUG_OA_CUT){
@@ -1179,7 +1193,10 @@ TERMINATE:
 
       /* If an error has been encountered, we fail */
 
-   if ( status ) *useraction_p = CPX_CALLBACK_FAIL; 
+   if ( status ) {
+      *useraction_p = CPX_CALLBACK_FAIL;
+      printf("add cut fail! \n");
+   }
 
    return status;
 
@@ -1388,9 +1405,6 @@ create_master_ILP   (CPXENVptr env, CPXLPptr lp, SubProblem* subproblem)
       //    goto TERMINATE;
       // }
    }
-
-   
-   
    // Add Init Cut in this step
    
 
@@ -1406,75 +1420,6 @@ TERMINATE:
 
 
 /* This routine read an array of doubles from an input file  */
-
-
-//------------------------------------------------------------------------
-static int
-read_file (FILE *in, SubProblem& sub_prob)
-{
-   int  status = 0;
-   char ch;
-      
-   int read = fscanf (in, "%c", &ch);
-   
-#if 0
-   int  max, num;
-
-   num = 0;
-   max = 10;
-
-   for (;;) {
-      int read = fscanf (in, "%c", &ch);
-      if ( read == 0 ) {
-         status = -1;
-         goto TERMINATE;
-      }
-      if ( ch == '\t' ||
-           ch == '\r' ||
-           ch == ' '  ||
-           ch == '\n'   ) continue;
-      if ( ch == '[' ) break;
-      status = -1;
-      goto TERMINATE;
-   }
-
-   for(;;) {
-      int read = fscanf (in, "%lg", (*data_p)+num);
-      if ( read == 0 ) {
-         status = -1;
-         goto TERMINATE;
-      }
-      num++;
-      if ( num >= max ) {
-         max *= 2;
-         *data_p = (double*)realloc(*data_p, max * sizeof(double));
-         if ( *data_p == NULL ) {
-            status = CPXERR_NO_MEMORY;
-            goto TERMINATE;
-         }
-      }
-      do {
-         read = fscanf (in, "%c", &ch);
-         if ( read == 0 ) {
-            status = -1;
-            goto TERMINATE;
-         }
-      } while (ch == ' ' || ch == '\n' || ch == '\t'  || ch == '\r');
-      if ( ch == ']' ) break;
-      else if ( ch != ',' ) {
-         status = -1;
-         goto TERMINATE;
-      }
-   }
-
-   *num_p = num;
-#endif
-TERMINATE:
-
-   return status;
-
-} /* END read_file */
-
 
 /* This routine frees up the pointer *ptr, and sets *ptr to 
    NULL */

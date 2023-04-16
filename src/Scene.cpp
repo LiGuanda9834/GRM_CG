@@ -79,6 +79,7 @@ void ScenePool::print_scene_by_target(int target_num){
 Scene_SSL::Scene_SSL(int _j, std::vector<int> _scene, int _m, int _k){
     index = -1;
     obj_qjs = 0.0;
+    time_tjs = 0.0;
     redcost = 0.0;
 
     nz_weapon_radar = 0;
@@ -106,6 +107,31 @@ Scene_SSL::Scene_SSL(int _j, std::vector<int> _scene, int _m, int _k){
         }
     }
 }
+
+Scene_SSL::Scene_SSL(int t_index, int w_index, int r_index, int m_, int k_){
+    index = -1;
+    target_index = t_index;
+    obj_qjs = 0.0;
+    time_tjs = 0.0;
+    redcost = 0.0;
+
+    weapon_num_m = m_;
+    radar_num_k = k_;
+
+    activated_weapons_num = std::vector<int>(m_, 0);
+    activated_radars_num = std::vector<int>(k_, 0);
+
+    nz_weapon_radar = 1;
+    activated_radars_num[r_index] = 1;
+    activated_weapons_num[w_index] = 1;
+
+    weapon_radar_indices = std::vector<int>();
+    weapon_radar_num = std::vector<int>();
+    weapon_radar_indices.push_back(cal_ssl_index(r_index, w_index));
+    weapon_radar_num.push_back(1);
+}
+
+
 
 void Scene_SSL::Set_Scene(int _j, std::vector<int> _scene, int _m, int _k){
     index = -1;

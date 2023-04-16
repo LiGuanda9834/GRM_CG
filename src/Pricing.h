@@ -40,13 +40,38 @@ public:
    
    void Set(Node &node);
    void Solve(vector<double> &dual);
+
+   void get_and_split_dual(vector<double>& dual);
+   void find_all_sp_sol(int _seed, int _is_frac);
+   void pick_validate_scenes();
+
+   void __split_dual(int current_block_size, double* current_dual_block, int& dual_check_pos);
+ 
    // void extend(const Label &parent);
    // bool dominance(int j);
 
 public:
+   //class memeber for Branch and Pricing
    GRM* grm;
-   double* dual_value;
    AlgoParameter parameter;
+
+   int sp_num;
+   bool* is_rcLeqZero;
+   bool* is_spCorrect;
+
+   int dual_value_num;
+   double* dual_vals;
+   
+   //class member used to solve GRM problem
+   int dual_block_num;
+   vector<int> splited_dual_block_size;
+   vector<double*> splited_dual_vals;
+   
+   vector<Scene_SSL> all_sp_ssl;
+   vector<Scene_SSL> valid_scenes_ssl;
+
+   bool is_consider_time_dual;
+   bool is_check_correctness;
 
 /**
  * @category 1 : initalize, find a feasible solution
@@ -54,10 +79,8 @@ public:
  * genereted scenes with negative reduced cost, 
  * if empty, means the Subproblem has reach the optimal 
 */
-   std::vector<Scene_SSL> scenes_ssl;
-
+   // class member for branch and bound
    Node *ptrNode;
-
    std::vector<std::vector<Label>> states; // @todo What is this?
 };
 

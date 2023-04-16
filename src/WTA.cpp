@@ -298,8 +298,8 @@ GRM::GRM(int instance_id){
             fscanf (fin, "%lf,", &target_value[i]);
             printf("%d value : %lf\n",i ,temp_value);
         }
-        probability_matrix = new double*[ssl_num]; 
 
+        probability_matrix = new double*[ssl_num]; 
         for(int i = 0; i < ssl_num; i++)
         { 
             probability_matrix[i] = new double[target_num_n];
@@ -308,14 +308,29 @@ GRM::GRM(int instance_id){
             }
         }
 
-        for(int j = 0; j < ssl_num; j++){
-            double temp_value;
-            fscanf (fin, "%lf,", &temp_value);
-            printf("%lf ",temp_value);
+        for(int i = 0; i < target_num_n; i++)
+        { 
+            for(int j = 0; j < ssl_num; j++){
+                fscanf (fin, "%lf,", &probability_matrix[j][i]);
+                printf("%lf ",probability_matrix[j][i]);
+            }
+            printf("\n");
         }
-        printf("\n");
+
+        
+        time_matrix = new double*[ssl_num]; 
+        for(int i = 0; i < ssl_num; i++)
+        {
+            time_matrix[i] = new double[target_num_n];
+            for(int j = 0; j < target_num_n; j++){
+                time_matrix[i][j] = 0;
+            }
         }
+
+        DEBUG_MODE = 0;
+        seed = 0;
     }
+}
     /*
     int status = 0;
     int f = fscanf (fin, "%d", &target_num_n);

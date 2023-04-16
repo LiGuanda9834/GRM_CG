@@ -28,6 +28,15 @@ void Master::Set(const Node &node)
    */
 }
 
+
+void Master::__add_similar_rows(int& n_rows_, vector<double>& row_lowers_, vector<double>& row_uppers_, int new_rows_nums, double temp_lower, double temp_upper){
+   n_rows_ += new_rows_nums;
+   row_lowers_.insert(row_lowers_.end(), new_rows_nums, temp_lower);
+   row_uppers_.insert(row_uppers_.end(), new_rows_nums, temp_upper);
+   return;
+}
+
+
 void Master::Initialize_HIGHS(){
   printf("\n----- Now Initialize master's HIGHS --- \n");
 
@@ -37,20 +46,29 @@ void Master::Initialize_HIGHS(){
   // Although the first constraint could be expressed as an upper
   // bound on x_1, it serves to illustrate a non-trivial packed
   // column-wise matrix.
-  //
+  
 
    int m = grm->weapon_num_m;
    int n = grm->target_num_n;
    int k = grm->radar_num_k;
-   int N_scenes = ssl_pool.size();
-
    int r_capacity = grm->radar_capacity;
    int w_capacity = grm->weapon_capacity;
+   /*
+   int N_scenes = ssl_pool.size();
+
+
 
    printf("Now the Scene Pool has : %d\n", N_scenes);
    // time eta
    int N_cols = N_scenes + 1;
    int N_rows = m + 2*n + k;
+
+
+
+
+   
+
+
 
    int base_weapon_cq = 0;
    int base_radar_cq = m;
@@ -110,6 +128,10 @@ vector<int>       nz_rows;
 vector<double>    nz_vals;
 
 int               nz_counter = 0;
+
+
+
+
 
 // Init All the scenes
 for(int i = 0; i < N_scenes; i++){
@@ -171,13 +193,14 @@ start_index.push_back(nz_counter);
 
   // Here the orientation of the matrix is column-wise
   model.lp_.a_matrix_.format_ = MatrixFormat::kColwise;
-  // a_start_ has num_col_1 entries, and the last entry is the number
+  // a_start_ has num_col + 1 entries, and the last entry is the number
   // of nonzeros in A, allowing the number of nonzeros in the last
   // column to be defined
   model.lp_.a_matrix_.start_ = start_index;
   model.lp_.a_matrix_.index_ = nz_rows;
   model.lp_.a_matrix_.value_ = nz_vals;
 
+// Now print the Matrix with column conpression storage
    printf("N_rows : %d", N_rows);
    printf("N_cols : %d",  N_cols);
    int real_nz_num = nz_vals.size();
@@ -199,6 +222,102 @@ start_index.push_back(nz_counter);
    else{
       printf("!!!!! counter has problem\n");
    }
+   */
+   if(param.objIncludeTime){
+      printf("The object is minimize the SS probability and time\n");
+   }
+   else{
+      printf("The object is minimize the SS probability without time\n");
+   }
+   int N_rows_new = 0;
+   vector<double> rows_lower_new;
+   vector<double> rows_upper_new;
+
+   int N_cols_new = 0;
+   vector<double> col_cost_new;
+   double offset_new = 0;
+   vector<double> cols_lower_new;
+   vector<double> cols_upper_new;
+
+   vector<int> start_index_new;
+   vector<int> nz_rows_new;
+   vector<double> nz_vals_new;
+
+   printf("----- Now init HIGHS ----- \n");
+   __add_similar_rows(N_rows_new, rows_lower_new, rows_upper_new, m, 0, static_cast<double>(w_capacity));
+   __add_similar_rows(N_rows_new, rows_lower_new, rows_upper_new, k, 0, static_cast<double>(r_capacity));
+   __add_similar_rows(N_rows_new, rows_lower_new, rows_upper_new, n, 1.0, 1.0);
+   if(param.objIncludeTime){
+      __add_similar_rows(N_rows_new, rows_lower_new, rows_upper_new, n, -1e+10, 0.0);
+   }
+
+
+
+   vector<Scene_SSL> mp_init_scenes;
+   __find_init_scene(mp_init_scenes, N_cols_new, n, r_capacity, w_capacity);
+
+
+
+   __init_col_LbUb(N_cols_new, cols_lower_new, cols_upper_new, 0, 1);
+
+
+
+   start_index_new.push_back(0);
+   if(param.objIncludeTime){
+      int time_base_row = m + n + k;
+      for(int i = 0; i < n; i++){
+         nz_rows_new.push_back(i + time_base_row);
+         nz_vals_new.push_back(-1);
+      }
+      start_index_new.push_back(n);
+      col_cost_new.push_back(1);
+   }
+
+   __add_cols_matrixAndCost(mp_init_scenes, start_index_new, nz_rows_new, nz_vals_new, col_cost_new);
+
+   // print 
+   printf("----- Init Scenes ----- \n");
+   for(int i = 0; i < mp_init_scenes.size(); i++){
+      printf("target %d : ", i);
+      mp_init_scenes[i].PrintScene();
+   }
+   printf("Row bounds: \n");
+   for(int i = 0; i < N_rows_new; i++){
+      printf("row%d : [%.2f, %.2f]\n",i, rows_lower_new[i], rows_upper_new[i]);
+   }
+   printf("Col bounds: \n");
+   for(int i = 0; i < N_cols_new; i++){
+      printf("%d scene : [%.2f, %.2f]\n", i, cols_lower_new[i], cols_upper_new[i]);
+   }
+   printf("cost : ");
+   for(int col = 0; col < start_index_new.size() - 1; col++){
+      printf("%.2f ", col_cost_new[col]);
+   }
+   printf("\n");
+   printf("column compress : \n");
+   for(int col = 0; col < start_index_new.size() - 1; col++){
+      printf("%d col: ", col);
+      for(int j = start_index_new[col]; j < start_index_new[col + 1]; j++){
+         printf(" row%d(%.2f),",nz_rows_new[j], nz_vals_new[j] );
+      }
+      printf("\n");
+   }
+
+
+
+  model.lp_.num_col_ = N_cols_new;
+  model.lp_.num_row_ = N_rows_new; 
+  model.lp_.sense_ = ObjSense::kMinimize;
+  model.lp_.offset_ = 0;
+  model.lp_.col_cost_ = col_cost_new;
+  model.lp_.col_lower_ = cols_lower_new;
+  model.lp_.col_upper_ = cols_upper_new;
+  model.lp_.row_lower_ = rows_lower_new;
+  model.lp_.row_upper_ = rows_upper_new;
+  model.lp_.a_matrix_.format_ = MatrixFormat::kColwise;
+  model.lp_.a_matrix_.start_ = start_index_new;
+  model.lp_.a_matrix_.index_ = nz_rows_new;
+  model.lp_.a_matrix_.value_ = nz_vals_new;
    return_status = highs.passModel(model);
    assert(return_status==HighsStatus::kOk);
 
@@ -206,8 +325,97 @@ start_index.push_back(nz_counter);
 // Write Model to Init_LP.lp
 
    printf("\n---- Highs of Master Problem has been Initialized ---- \n");
+   return;
 }
 
+int Master::__find_init_scene(vector<Scene_SSL>& init_scenes, int& num_cols, const int target_num, const int radar_capa = 8, const int weapon_capa = 4){
+   int return_value = 1;
+   init_scenes = vector<Scene_SSL>();
+   num_cols = target_num;
+   for(int i = 0; i < target_num; i++){
+      int temp_radar_id = i / radar_capa;
+      int temp_weapon_id = i / weapon_capa;
+      int temp_ssl_id = grm->cal_ssl_index(temp_radar_id, temp_weapon_id);
+      Scene_SSL temp_scene(i, temp_weapon_id, temp_radar_id, grm->weapon_num_m, grm->radar_num_k);
+      //temp_scene.PrintScene();
+      init_scenes.push_back(temp_scene);
+   }
+   return return_value;
+}
+
+int Master::__init_col_LbUb(const int init_col_num, vector<double>& col_lbs, vector<double>& col_ubs, double lb_, double ub_){
+   col_lbs = vector<double>(init_col_num, lb_);
+   col_ubs = vector<double>(init_col_num, ub_);
+   return 1;
+}
+
+int Master::__cal_onessl_matrixAndCost(Scene_SSL temp_SSL, int& target_nnz, vector<int>& target_nz_rows, vector<double>& target_nz_vals, double& col_cost){
+   int return_value = 1;
+
+   int nz_counter = 0;
+   int current_baseNum = 0;
+   vector<int> nz_rows;
+   vector<double> nz_vals;
+
+   // Add weapon
+   int weapon_nnz = 0;
+   vector<int> weapon_nz_indices;
+   vector<int> weapon_nz_values;
+   convert_sparse_to_compress_int(temp_SSL.activated_weapons_num, weapon_nnz, weapon_nz_indices, weapon_nz_values);
+   __add_conpress_int(nz_counter, nz_rows, nz_vals, weapon_nnz, weapon_nz_indices, weapon_nz_values, current_baseNum);
+   current_baseNum += temp_SSL.weapon_num_m;
+   
+   // Add radar
+   int radar_nnz = 0;
+   vector<int> radar_nz_indices;
+   vector<int> radar_nz_values;
+   convert_sparse_to_compress_int(temp_SSL.activated_radars_num, radar_nnz, radar_nz_indices, radar_nz_values);
+   __add_conpress_int(nz_counter, nz_rows, nz_vals, radar_nnz, radar_nz_indices, radar_nz_values, current_baseNum);
+   current_baseNum += temp_SSL.radar_num_k;
+
+   // Add target
+   int n = grm->target_num_n;
+   int j = temp_SSL.target_index;
+   nz_counter++;
+   nz_rows.push_back(j + current_baseNum);
+   nz_vals.push_back(1.0);
+   current_baseNum += n;
+
+   // if consider time, Add time
+   if(param.objIncludeTime){
+      nz_counter++;
+      nz_rows.push_back(j + current_baseNum);
+      nz_vals.push_back(grm->set_ssl_tjs(temp_SSL));
+   }
+
+   target_nnz = nz_counter;
+   target_nz_rows = nz_rows;
+   target_nz_vals = nz_vals;
+   col_cost = grm->set_ssl_qjs(temp_SSL);
+   return return_value;
+}
+
+int Master::__add_cols_matrixAndCost(vector<Scene_SSL> all_scenes, vector<int>& add_nnz, vector<int>& add_nz_rows, vector<double>& add_nz_vals, vector<double>& add_col_costs){
+   int return_value = 1;
+   int scene_nums = all_scenes.size();
+   
+   int current_col_nums = add_nnz.size() - 1;
+   int current_nnz = add_nnz[current_col_nums];
+   for(int i = 0; i < scene_nums; i++){
+      int temp_nnz = 0;
+      vector<int> temp_nz_rows;
+      vector<double> temp_nz_vals;
+      double temp_cost = 0.0;
+      __cal_onessl_matrixAndCost(all_scenes[i], temp_nnz, temp_nz_rows, temp_nz_vals, temp_cost);
+      current_col_nums += 1;
+      current_nnz += temp_nnz;
+      add_nnz.push_back(current_nnz);
+      add_nz_rows.insert(add_nz_rows.end(), temp_nz_rows.begin(), temp_nz_rows.end());
+      add_nz_vals.insert(add_nz_vals.end(), temp_nz_vals.begin(), temp_nz_vals.end());
+      add_col_costs.push_back(temp_cost);
+   }
+   return return_value;
+}
 
 
 Master::~Master(){}
@@ -716,6 +924,8 @@ double Master::cal_obj_val(){
 int Master::convert_sparse_to_compress_int(vector<int> origin_vector, int& nnz, vector<int>& nz_pos, vector<int>& nz_val){
    int return_value = 1;
    nnz = 0;
+   nz_pos = vector<int>();
+   nz_val = vector<int>();
    for(int i = 0; i < origin_vector.size(); i++){
       if(origin_vector[i] != 0){
          nz_pos.push_back(i);
@@ -729,6 +939,8 @@ int Master::convert_sparse_to_compress_int(vector<int> origin_vector, int& nnz, 
 int Master::convert_sparse_to_compress_double(vector<double> origin_vector, int& nnz, vector<int>& nz_pos, vector<double>& nz_val){
    int return_value = 1;
    nnz = 0;
+   nz_pos = vector<int>();
+   nz_val = vector<double>();
    for(int i = 0; i < origin_vector.size(); i++){
       if(origin_vector[i] > EPS || origin_vector[i] < -EPS){
          nz_pos.push_back(i);
@@ -739,6 +951,25 @@ int Master::convert_sparse_to_compress_double(vector<double> origin_vector, int&
    return return_value;
 }
 
+int Master::__add_conpress_double(int& odd_nz_num, vector<int>& old_nz_indices, vector<double>& old_nz_vals, int add_nz_num, vector<int> add_nz_indices, vector<double> add_nz_vals, int add_base_num){
+   int return_value = 1;
+   odd_nz_num += add_nz_num;
+   for(int i = 0; i < add_nz_num; i++){
+      old_nz_indices.push_back(add_nz_indices[i] + add_base_num);
+      old_nz_vals.push_back(add_nz_vals[i]);
+   }
+   return return_value;
+}
+
+int Master::__add_conpress_int(int& odd_nz_num, vector<int>& old_nz_indices, vector<double>& old_nz_vals,int add_nz_num, vector<int> add_nz_indices, vector<int> add_nz_vals, int add_base_num){
+   int return_value = 1;
+   odd_nz_num += add_nz_num;
+   for(int i = 0; i < add_nz_num; i++){
+      old_nz_indices.push_back(add_nz_indices[i] + add_base_num);
+      old_nz_vals.push_back(static_cast<double>(add_nz_vals[i]));
+   }
+   return return_value;
+}
 
 /*
 void LP_ALL_IN_ONE::INITIALIZE_LP_BY_MASTER(WTA* wta, ScenePool scene_pool){

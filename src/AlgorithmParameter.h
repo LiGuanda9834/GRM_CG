@@ -6,35 +6,58 @@
 #include <iostream>
 #include <limits>
 
+using std::string;
 
 class AlgoParameter
 {
 public:
-    // 0 for release without debug
-    // 5 for test root node
-    int DEBUG_VERSION;
+// path and name
+    std::string problem_name = "GRM";
+    std::string algo_name = "Branch and Cut"; 
+    std::string test_prefix = "Instance";
+    std::string test_extension = ".csv";
+    std::string path_data = "";
+    std::string path_result_sol= "";
+    std::string path_result_csv= "";
 
-    int seed;
-    std::default_random_engine rnd;
-    double eps;
-
-    std::string problem_name;
-    std::string algo_name;
-    int time_limit;
-    std::string test_prefix;
-    std::string test_extension;
-    std::string path_data;
-    std::string path_result_sol;
-    std::string path_result_csv;
-
-    bool rootOnly;
-    bool enableCuts;
-    bool depthFirst;
-    bool enableBranchOnSum;
-    bool enableCplexLog;
-
+// constant number
+    double eps = 1.0e-8;
+    int time_limit = 7200;
     long maxValue = std::numeric_limits<long>::max();
+
+// Random generation
+    int seed = 0;
+    std::default_random_engine rnd;
+
+// GRM params
+    // model module
+    bool objIncludeTime = 1;    // 1 for doesn't consider time, 0 for consider time
+    bool useTargetCons = 0;     // 1 for each target has at most 1 SSL 
+
+    // mp module
+    int mpInitScene_mode = 1;   // 1 for target i with [radar(i/r_capa), weapon(i/w_capa)]
+
+    // pricing module 
+    bool pricingCheckCorrectness = 0;
+
+    // sp module 
+    int spInitCut_mode = 0;     // Need consider
+    bool spOptOnly = 0;         // 1 for only add opt sp solution
+    bool spCutAllowFrac = 0;    
+
+// Branch and Cut param
+    bool rootOnly = 1;
+    bool enableCuts = 1;
+    bool depthFirst = 1;
+    bool enableBranchOnSum = 0;
     double optimalityGap = 1.0e-6;
+
+
+// Debug and Infomation params
+    int DEBUG_VERSION = 0;
+    bool enableCplexLog = 0;
+
+
 
 public:
    AlgoParameter(){}
@@ -53,6 +76,7 @@ public:
          rnd = std::default_random_engine(seed);
       }
 
+      
       ~AlgoParameter() = default;
 
       std::string csv_name()

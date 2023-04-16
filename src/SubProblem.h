@@ -89,6 +89,8 @@ public:
 
     // Give a x, calculate cutval, cutind and rhs for add linear constraint
     void  cal_constraint_by_x(vector<int> weapon_sets);
+    void  __cal_current_constraint();
+    
 
     double cal_eta_lower_bound();
     double cal_eta_upper_bound();

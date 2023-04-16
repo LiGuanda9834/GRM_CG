@@ -4,7 +4,7 @@ TestClass::TestClass(GRM* grm_, AlgoParameter& param_){
     grm = grm_;
     master = NULL;
     pricing = NULL;
-    sub = NULL;
+    sp = NULL;
     param = param_;
 }
 
@@ -29,6 +29,68 @@ void TestClass::test_scene_addSceneToPool(){
         printf("Now calculate ssl %d \n", i);
         temp_ssl_pool[i].PrintScene();
     }
+}
+
+void TestClass::test_sp_findInitCut(){
+   vector<vector<int>> temp_init_cut;
+   sp->find_init_cut(temp_init_cut, 1, 1);
+   printf("size: %d \n", temp_init_cut[0].size());
+   sp->print_LP_info();
+}
+
+void TestClass::test_sp_correctness(){
+    int test_size = 1;
+    vector<bool> is_correct(test_size, true);
+    for(int i = 0; i < test_size; i++){
+        sp->Init_test(grm, 0, &param, i);
+        sp->print_model();
+        is_correct[i] = sp->check_correctness_by_enum();
+    }
+    for(int i = 0; i < test_size; i++){
+        if(is_correct[i] = true){
+            printf("instance %d is correct\n", i);
+        }
+        else{
+            printf("instance %d is wrong!!!\n", i);
+        }
+    }
+    sp->Delete();
+}
+
+// Print Information
+void TestClass::print_main_time(clock_t start_clock, clock_t end_clock){
+    double sec = double(end_clock - start_clock) / double(CLOCKS_PER_SEC);
+   printf("Time \t:");
+   std::cout << end_clock - start_clock << "/" << CLOCKS_PER_SEC << " = " << sec << " (s) "<< std::endl;
+}
+
+void TestClass::print_main_info(int MODE_){
+    printf("Mode \t:");
+    switch (MODE_)
+    {
+    case 1:
+        printf("Branch and Cut\n");
+        break;
+    
+    case 2:
+        printf("Sub Problem\n");
+
+    case 3:
+        printf("Quick Test \n");
+
+    case 4:
+        printf("Branch and Bound\n");
+    default:
+        break;
+    }
+
+    printf("Size\t:target(%d), weapon(%d), radar(%d)\n", grm->target_num_n, grm->weapon_num_m, grm->radar_num_k);
+
+    printf("Seed\t:%d\n", grm->seed);
+}
+
+void TestClass::pirnt_main_param(){
+    printf("seed_in_GRM:\t%d\n", grm->seed);
 }
 
 void TestClass::getCombinations(vector<vector<int>>& All_num, int col_num, int radar_capacity, int weapon_start, vector<int> weapon_capacity, int& counter_scene, int row_num, int current_radar, double& opt_val,vector<int>& opt_sol) {
@@ -112,7 +174,7 @@ void TestClass::getCombinations(vector<vector<int>>& All_num, int col_num, int r
 void TestClass::test_Enumerate(int radar_capacity, int weapon_capacity){
     printf("------ TEST-----\n");
     printf("test enumerate all the ssl \n");
-      // Test Scene
+      // Test Scene 
       int temp_col_num = grm->weapon_num_m;
       int temp_row_num = grm->radar_num_k;
 
