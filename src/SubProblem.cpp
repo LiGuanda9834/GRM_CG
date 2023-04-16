@@ -169,9 +169,9 @@ double SubProblem::cal_fx(){
         }
     }
     fx = fx - target_dual_vj;
-    if(parameter->objIncludeTime){
+    //if(parameter->objIncludeTime){
        fx = fx - time_dual_wj;
-    }
+    //}
     return fx;
 }
 

@@ -170,6 +170,13 @@ public:
       return weapon_num_m_ * radar_index + weapon_index;
    }
 
+   inline double cal_obj_const(){
+      double obj_const = target_dual_vj;
+      if(parameter->objIncludeTime){
+         obj_const += time_dual_wj;
+      }
+      return obj_const;
+   }
    // print the lower bound and the upper bound of eta, Used to check cal_lb and cal_ub
    inline void print_eta_bound()
    {
