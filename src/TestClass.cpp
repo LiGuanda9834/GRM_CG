@@ -35,7 +35,7 @@ void TestClass::test_sp_findInitCut(){
    vector<vector<int>> temp_init_cut;
    sp->find_init_cut(temp_init_cut, 1, 1);
    printf("size: %d \n", temp_init_cut[0].size());
-   sp->print_LP_info();
+   sp->print_OA_cut_info();
 }
 
 void TestClass::test_sp_correctness(){
@@ -54,6 +54,8 @@ void TestClass::test_sp_correctness(){
             printf("instance %d is wrong!!!\n", i);
         }
     }
+    //sp->print_model();
+    sp->print_pramas();
     sp->Delete();
 }
 

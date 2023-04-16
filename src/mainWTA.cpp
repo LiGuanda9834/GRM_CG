@@ -145,9 +145,8 @@ int main(int argc, char *argv[]) {
    {
       printf("------ Now test the subproblem -------\n");
       test.sp = new SubProblem;
-
       test.test_sp_correctness();
-      
+      //test.sp->print_pramas();
       delete test.sp;
       printf("------ subproblem test finished -------\n");
    }
