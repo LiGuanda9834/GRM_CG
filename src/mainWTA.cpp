@@ -143,6 +143,7 @@ int main(int argc, char *argv[]) {
       //parameter.pricingCheckCorrectness = 1;
       BranchAndCut test_BAC(grm, parameter);
       test_BAC.Run();
+      parameter.printAllParams();
    }
 
    // Use this to test Sub-Problem
@@ -154,6 +155,7 @@ int main(int argc, char *argv[]) {
       //test.sp->print_pramas();
       delete test.sp;
       printf("------ subproblem test finished -------\n");
+      parameter.printAllParams();
    }
 
    // Use this block to print the parameters and resultes
