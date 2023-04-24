@@ -39,9 +39,7 @@ class BranchAndCut
 {
    public:
       BranchAndCut(GRM *grm, const AlgoParameter &parameter);
-
       ~BranchAndCut() = default;
-
       void Run();
 
    private:
@@ -60,6 +58,8 @@ class BranchAndCut
       void IncumbentHeuristic(Node &node);
 
       void record_time(clock_t start_time, clock_t AddCol_finished_time, clock_t master_finished_time, clock_t subProb_finished_time, int DEBUG_LEVEL);
+
+      void print_current_dual();
 
       inline bool TimeLimit() const
       {

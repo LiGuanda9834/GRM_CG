@@ -31,7 +31,14 @@ BranchAndCut::BranchAndCut(
    int target_n = grm->target_num_n;
    int radar_k = grm->radar_num_k;
 
-   dual = vector<double>(weapon_m + target_n * 2 + radar_k, 0);
+   if(parameter.objIncludeTime)
+   {
+      dual = vector<double>(weapon_m + target_n * 2 + radar_k, 0);
+   }
+   else
+   {
+      dual = vector<double>(weapon_m + target_n + radar_k, 0);
+   }
    
    col = NULL;
    row = NULL;
@@ -156,29 +163,25 @@ bool BranchAndCut::ColumnGeneration(
       return false;
    }
    master.ssl_pool.print_all_scene();
-   return true;
    master.GetDualValues(dual);
-   int dual_num = dual.size();
-   printf("print dual before solve the subproblem\n");
-   for(int i = 0; i < dual_num; i++){
-      printf("%.2f ", dual[i]);
-   }
-   printf("\n");
+   print_current_dual();
    pricing.Solve(dual);
-   /* add column(s) gradually to master problem */
-   //while (master.Check_is_scenes_new(pricing.scenes))  /* while routes empty, stop*/
-   while (pricing.valid_scenes_ssl.size() != 0)  /* while routes empty, stop*/
+   /* add column(s) gradually to master problem,*/ 
+   while (pricing.valid_scenes_ssl.size() != 0) /*while scenes generated from sp is empty, stop */
    {
       clock_t start_one_master, after_add_before_master, after_master_before_pricing, end_one_master;
       start_one_master = clock();
    
-      
       printf("\n\n--------------Now Solve a new Master Problem-------------\n");
       /* Add path(s) from the candidate pool */
-      master.AddCol(pricing.valid_scenes_ssl);
+      //master.AddCol(pricing.valid_scenes_ssl);
+      master.add_new_cols(pricing.valid_scenes_ssl);
+      master.ssl_pool.print_scene_by_target(grm->target_num_n);
+      //return true;
       after_add_before_master = clock();
 
       master.Solve(); 
+      
       after_master_before_pricing = clock();
 
       printf("\n\n--------------new Master Problem has been solved-------------\n");
@@ -191,6 +194,9 @@ bool BranchAndCut::ColumnGeneration(
       master_running_counter++;
 
       record_time(start_one_master, after_add_before_master, after_master_before_pricing, end_one_master, 0);
+      // if(master_running_counter > 3){
+      //    return true;
+      // }
    }
    printf("All the Scenes generated from Subproblems are : \n");
    int target_num = grm->target_num_n;
@@ -302,4 +308,13 @@ void BranchAndCut::record_time(clock_t start_time, clock_t addCol_finished_time,
       printf("Pricing:\t%.2e\n", temp_PricingSolve_sec);
 
    }
+}
+
+void BranchAndCut::print_current_dual(){
+   int dual_num = dual.size();
+   printf("print dual stored in column generation\n");
+   for(int i = 0; i < dual_num; i++){
+      printf("%.2f ", dual[i]);
+   }
+   printf("\n");
 }

@@ -47,6 +47,11 @@ public:
 
    void __split_dual(int current_block_size, double* current_dual_block, int& dual_check_pos);
  
+   // Use this to print the splited dual vals
+   void print_splitted_dual();
+
+   // Use this function to clear all the vec data, because all the SubProb only has one instance
+   void clear_vec_member(); 
    // void extend(const Label &parent);
    // bool dominance(int j);
 

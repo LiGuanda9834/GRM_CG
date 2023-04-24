@@ -91,6 +91,7 @@ void SubProblem::Init(GRM* _grm, int t_index, double* w_dual_ui, double* r_dual,
    only_add_opt_sol = param->spOptOnly;
    allow_frac_cut = param->spCutAllowFrac;
    init_cut_mode = param->spInitCut_mode;
+   debug_print_mode = param->spPrintMode;
 }
 
 void SubProblem::Init_test(GRM* grm_, int t_index, AlgoParameter* param, int test_seed){
@@ -109,7 +110,7 @@ void SubProblem::Init_test(GRM* grm_, int t_index, AlgoParameter* param, int tes
    double* time_dual = new double[_target_num];
    double* target_dual = new double[_target_num];
 
-   int target_index = 1;
+   int target_index = t_index;
 
    for(int i = 0; i < _weapon_num; i++){
       weapon_dual[i] = 0.01 * double(rand()) / RAND_MAX  - 0.01;
@@ -132,8 +133,6 @@ void SubProblem::Init_test(GRM* grm_, int t_index, AlgoParameter* param, int tes
 
    only_add_opt_sol = true;
 
-   
-   
    delete[] weapon_dual;
    delete[] radar_dual;
    delete[] time_dual;
@@ -168,10 +167,8 @@ double SubProblem::cal_fx(){
             fx = fx - (weapon_dual_ui[temp_weapon_index] + radar_dual_muk[temp_radar_index]) * x[i];
         }
     }
-    fx = fx - target_dual_vj;
-    //if(parameter->objIncludeTime){
-       fx = fx - time_dual_wj;
-    //}
+   //   fx = fx - time_dual_wj - target_dual_vj;
+    fx = fx - cal_obj_const();
     return fx;
 }
 
@@ -242,7 +239,7 @@ double SubProblem::cal_eta_lower_bound(){
       double lower_bound = prob_part - target_dual_vj;
       return lower_bound;
    */
-   return - target_dual_vj - time_dual_wj;
+   return - cal_obj_const();
 }
 
 double SubProblem::cal_eta_upper_bound(){
@@ -252,7 +249,7 @@ double SubProblem::cal_eta_upper_bound(){
       int temp_radar_index = cal_radar_index(i);
       dual_part = dual_part - weapon_dual_ui[temp_weapon_index] - radar_dual_muk[temp_radar_index];
    }
-   double upper_bound = dual_part - target_dual_vj - time_dual_wj;
+   double upper_bound = dual_part - cal_obj_const();
    return upper_bound;
 }
 
@@ -391,6 +388,26 @@ void SubProblem::print_OA_cut(){
     printf("%.4f theta <= %.4f\n", cutval[ssl_num], rhs);
 }
 
+vector<int> SubProblem::cal_optimal_scene_with_target_cons(Scene_SSL& scene_ssl){
+   double opt_val = -INFINITY;
+   int opt_weapon = -1;
+   int opt_radar = -1;
+   for(int i = 0; i < weapon_num_m_; i++){
+      for(int j = 0; j < radar_num_k_; j++){
+         double temp_obj_val = weapon_dual_ui[i] + radar_dual_muk[j];
+         if(temp_obj_val > opt_val){
+            opt_val = temp_obj_val;
+            opt_weapon = i;
+            opt_radar = j;
+         }
+      }
+   }
+   int opt_ssl_index = cal_ssl_index(opt_radar, opt_weapon);
+   vector<int> best_ssl_(ssl_num, 0);
+   best_ssl_[opt_ssl_index] = 1;
+   scene_ssl.Set_Scene(target_index, best_ssl_, weapon_num_m_, radar_num_k_);
+   return best_ssl_;
+}
 
 vector<int> SubProblem::cal_optimal_scene(Scene_SSL& scene_ssl){
     int DEBUG_MODE = parameter->DEBUG_VERSION;
@@ -438,7 +455,8 @@ wherefrom == CPX_CALLBACK_MIP_CUT_FEAS ) */
    // Set separate_fractional_solutions
    
    // wta.separate_fractional_solutions = separate_fractional_solutions;
-   printf("Target:\t%d\n", target_index);
+   printf("------ Now print the SP solution info -----\n");
+   printf("Target    \t: %d\n", target_index);
    int DEBUG_PRINT_BASIC_INFO = 0;
    if(DEBUG_PRINT_BASIC_INFO){
          printf("proble size: m = %d , n = %d , seed = %d \n", m, n, _seed);
@@ -538,8 +556,9 @@ wherefrom == CPX_CALLBACK_MIP_CUT_FEAS ) */
       goto TERMINATE;
    }
    
+
    solstat = CPXgetstat (env, lp);
-   printf ("\nSolution status: %d\n", solstat);
+   printf ("Solution status\t: %d\n", solstat);
 
    /* Write out the objective value */ 
    status = CPXgettime(env, &cplex_end_time);
@@ -554,12 +573,12 @@ wherefrom == CPX_CALLBACK_MIP_CUT_FEAS ) */
       printf ("Failed to obtain objective value.\n");
    }
    else {
-      printf ("Objective value: %17.10e\n", objval);
+      printf ("Objective value\t: %17.10e\n", objval);
    }
 
    if ( solstat == CPXMIP_OPTIMAL ) {
       /* Write out the optimal tour */ 
-      printf ("Solution status is CPX_STAT_OPTIMAL\n");
+      printf ("Solution status\t: CPX_STAT_OPTIMAL\n");
       num_x_cols = CPXgetnumcols (env, lp);
       x = (double*)malloc (num_x_cols * sizeof(*x));
       if ( x == NULL ) {
@@ -573,16 +592,15 @@ wherefrom == CPX_CALLBACK_MIP_CUT_FEAS ) */
          goto TERMINATE;
       }
 
-      printf("Node :\t%d\n", CPXgetnodecnt(env, lp));
+      printf("Node        \t: %d\n", CPXgetnodecnt(env, lp));
    } 
    else {
       printf ("Solution status is not CPX_STAT_OPTIMAL\n");
-      printf("Node :\t%d\n", CPXgetnodecnt(env, lp));
+      printf("Node        \t: %d\n", CPXgetnodecnt(env, lp));
    }
 
    running_time = cplex_end_time - cplex_start_time;
-   printf("Time :\t%e\n",target_index ,running_time);
-
+   printf("Time       \t: %e\n",target_index ,running_time);
 
    for(int i = 0; i < ssl_num; i++){
       best_ssl_set[i] = round(x[i]);
@@ -592,11 +610,11 @@ wherefrom == CPX_CALLBACK_MIP_CUT_FEAS ) */
    DEBUG_PRINT_SUBPROB_SOLUTION = 1;
 
    if(DEBUG_PRINT_SUBPROB_SOLUTION){
-      printf("Solution:\n");
+      printf("Solution\t: ");
       for(int i = 0; i < num_x_cols; i++){
          printf("x%d\t", i);
       }
-      printf("\n");
+      printf("\n        \t  ");
       for(int i = 0; i < num_x_cols; i++){
          printf("%.2f\t", x[i]);
       }
@@ -631,7 +649,7 @@ TERMINATE:
    }
 
    scene_ssl.Set_Scene(target_index, best_ssl_set, m, k);
-   printf("Now pass the scene to the Scene pool : \n");
+   printf("Generated scene\t: ");
    scene_ssl.PrintScene();
    return best_ssl_set;
    //return status;
@@ -1049,8 +1067,7 @@ TERMINATE:
 double SubProblem::cal_reduced_cost(Scene_SSL& temp_ssl_scene){
 
    double red_cost = grm->set_ssl_qjs(temp_ssl_scene);
-   red_cost -= target_dual_vj;
-   red_cost -= time_dual_wj;
+   red_cost -= cal_obj_const();
    for(int i = 0; i < weapon_num_m_; i++){
       red_cost -= weapon_dual_ui[i] * temp_ssl_scene.activated_weapons_num[i];
    }
@@ -1136,7 +1153,7 @@ benders_callback  (CPXCENVptr env, void *cbdata, int wherefrom,
    sub_prob->__cal_current_constraint();
 
    // Set weather this OA cut is purgeable
-   printf("------ the cut is from %ld ---------\n", wherefrom);
+   // printf("------ the cut is from %ld ---------\n", wherefrom);
    if(sub_prob->is_x_all_integer()){
       purgeable = CPX_USECUT_FORCE;
    }
@@ -1153,8 +1170,7 @@ benders_callback  (CPXCENVptr env, void *cbdata, int wherefrom,
    if(sub_prob->__is_current_cut_should_add())
    {
       // this block is used to check the new cut generated from the current point
-      int DEBUG_CUT = 1;
-      if(DEBUG_CUT)   { sub_prob->print_OA_cut(); }
+      if((sub_prob->debug_print_mode & 1) != 0)   { sub_prob->print_OA_cut(); }
 
       status = CPXcutcallbackadd (env, cbdata, wherefrom, x_num_+1, sub_prob->rhs, 'L', 
          sub_prob->cutind, sub_prob->cutval,
@@ -1555,7 +1571,7 @@ void SubProblem::__enumerate_all_scene(vector<vector<int>>& All_num, int col_num
             }
          }
          // Print all the information about the new ssl
-         int DEBUG_PRINT = 1;
+         int DEBUG_PRINT = 0;
          if(DEBUG_PRINT)
          { 
             printf("SSL %d : \n", counter_scene);

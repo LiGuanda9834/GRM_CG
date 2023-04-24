@@ -116,26 +116,31 @@ int main(int argc, char *argv[]) {
    }
 
    start_time = clock();
-   GRM* grm = new GRM(grm_target_num, grm_weapon_num, grm_radar_num, 1);
-   grm->Init_by_random(temp_seed);
-   //GRM* grm = new GRM(1);
+   GRM* grm;
+
+   if(parameter.dataSource == 1){
+      grm = new GRM(grm_target_num, grm_weapon_num, grm_radar_num, 1);
+      grm->Init_by_random(temp_seed);
+   }
+   else{
+      grm = new GRM(5);
+   }
    grm->print_model();
+
 
    TestClass test(grm, parameter);
    
 
    if(MODE == 3){
       printf("Quick Test \n");
-      if(parameter.spOptOnly){
-         printf("Only add cut when sp achieve sol\n");
-      }
-      else{
-         printf("Allow sp get a general rc < 0 sol\n");
-      }
+      parameter.printAllParams();
    }
 
-
+   
    if(MODE == BAC){
+      parameter.objIncludeTime = 0;
+      parameter.spOptOnly = 0;
+      //parameter.pricingCheckCorrectness = 1;
       BranchAndCut test_BAC(grm, parameter);
       test_BAC.Run();
    }
@@ -156,6 +161,7 @@ int main(int argc, char *argv[]) {
    
    test.print_main_time(start_time, finish_time);
    test.print_main_info(MODE);
+
    // Use This to clear the problem
    printf("---------- FINISHED --------\n");
    delete grm;

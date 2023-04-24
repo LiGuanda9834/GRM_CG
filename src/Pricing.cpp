@@ -29,6 +29,7 @@ Pricing::Pricing(GRM* _grm, AlgoParameter _parameter)
    states = {};
    is_consider_time_dual = parameter.objIncludeTime;
    is_check_correctness = parameter.pricingCheckCorrectness;
+   
 }
 
 
@@ -50,7 +51,7 @@ Pricing::Pricing(GRM* _grm, AlgoParameter _parameter)
 
 void Pricing::Solve(vector<double> &dual) 
 {
-   vector<Scene_SSL> temp_scenes;
+   clear_vec_member();
    // Set constant and argument
    int _seed = parameter.seed; 
    int _is_frac = parameter.spCutAllowFrac;
@@ -64,8 +65,28 @@ void Pricing::Solve(vector<double> &dual)
    // check all scenes generated from sp is valid
    pick_validate_scenes();
    printf("\nIn this pricing step we gain %d scenes\n", valid_scenes_ssl.size());
+   
 }
 
+void Pricing::clear_vec_member(){
+   vector<Scene_SSL> empty_ssl_vec;
+   valid_scenes_ssl = empty_ssl_vec;
+   all_sp_ssl = empty_ssl_vec;
+   vector<int> empty_int_vec;
+   splited_dual_block_size = empty_int_vec;
+   for(int i = 0; i < splited_dual_vals.size(); i++){
+      if(splited_dual_vals[i]){
+         delete[] splited_dual_vals[i];
+         splited_dual_vals[i] = NULL;
+      }
+   }
+   if(dual_vals){
+      delete[] dual_vals;
+      dual_vals = NULL;
+   }
+   vector<double*> empty_double_ptr_vec;
+   splited_dual_vals = empty_double_ptr_vec;
+}
 
 void Pricing::get_and_split_dual(vector<double>& dual){
    dual_value_num = dual.size();
@@ -82,7 +103,7 @@ void Pricing::get_and_split_dual(vector<double>& dual){
    double* weapon_dual = new double[m];
    double* radar_dual = new double[k];
    double* target_dual = new double[n];
-
+   printf("Now print the splitted dual variables when created\n");
    printf("weapon dual : ");
    __split_dual(m, weapon_dual, current_pos);
 
@@ -91,12 +112,13 @@ void Pricing::get_and_split_dual(vector<double>& dual){
 
    printf("\ntarget dual : ");
    __split_dual(n, target_dual, current_pos);
-
+   
    if(parameter.objIncludeTime){
       double* time_dual = new double[n];
       printf("\ntime dual : ");
       __split_dual(n, time_dual, current_pos);
    }
+   printf("\n");
 }
 
 void Pricing::__split_dual(int current_block_size, double* current_dual_block, int& dual_check_pos){
@@ -116,10 +138,24 @@ void Pricing::__split_dual(int current_block_size, double* current_dual_block, i
    }
 }
 
+void Pricing::print_splitted_dual(){
+   printf("Now print the splitted dual vals\n");
+   int dual_part_num = splited_dual_block_size.size();
+   for(int i = 0; i < dual_part_num; i++){
+      int current_dual_part_size = splited_dual_block_size[i];
+      printf("The %d dual vals part has %d num :", i, current_dual_part_size);
+      for(int j = 0; j < current_dual_part_size; j++){
+         printf("%.2f, ", splited_dual_vals[i][j]);
+      }
+      printf("\n");
+   }
+}
+
 void Pricing::find_all_sp_sol(int _seed, int _is_frac){
+   print_splitted_dual();
    for(int t = 0; t < sp_num ; t++)
    {  
-      printf("\nNow calculate the scene %d\n", t);
+      printf("\nNow calculate the Target %d\n", t);
       SubProblem sub_prob;
       double* weapon_dual_ = splited_dual_vals[0];
       double* radar_dual_ = splited_dual_vals[1];
@@ -130,19 +166,36 @@ void Pricing::find_all_sp_sol(int _seed, int _is_frac){
          double time_dual_ = splited_dual_vals[3][t];
       }
       
+
       sub_prob.Init(grm, t, weapon_dual_, radar_dual_, time_dual_, target_dual_, _seed, _is_frac, &parameter);
+      //sub_prob.print_model();
+
 
 
       Scene_SSL temp_scene;
-      vector<int> solve_by_OA = sub_prob.cal_optimal_scene(temp_scene);
-      all_sp_ssl.push_back(temp_scene);
+      //vector<int> solve_by_OA = sub_prob.cal_optimal_scene(temp_scene);
+      vector<int> solve_by_OA;
+      if(parameter.useTargetCons){
+         solve_by_OA = sub_prob.cal_optimal_scene_with_target_cons(temp_scene);
+      }
+      else{
+         solve_by_OA = sub_prob.cal_optimal_scene(temp_scene);
+      }
 
+      all_sp_ssl.push_back(temp_scene);
       double real_redcost = sub_prob.cal_reduced_cost(temp_scene);
-      printf("opt_val : %e, real_redcost : %e\n", sub_prob.sub_optval, real_redcost);
+      //printf("--- Now check if this Scene should be add to the mp ---\n");
+      printf("opt_vaL     \t: %e\n", sub_prob.sub_optval);
+      printf("real_redcost\t: %e\n", real_redcost);
       if(real_redcost < -1e-8){
-         printf("---- This target doesn't satisfied -----\n");
+         printf("Add col?\t: yes, [add col condition(rc < 0) has been satisfied, add col to mp]\n");
          is_rcLeqZero[t] = true; 
       }
+      else{
+         printf("Add col?\t: no, [rc already >= 0, do not add col]\n");
+         is_rcLeqZero[t] = false;
+      }
+      printf("\n-----     SP sulution info print finished   -----\n\n");
 
       if(is_check_correctness){
          is_spCorrect[t] = sub_prob.check_correctness_by_enum();
@@ -153,7 +206,6 @@ void Pricing::find_all_sp_sol(int _seed, int _is_frac){
 
 
 void Pricing::pick_validate_scenes(){
-   
    for(int i = 0; i < sp_num; i++){
       if(is_rcLeqZero[i]){
          valid_scenes_ssl.push_back(all_sp_ssl[i]);

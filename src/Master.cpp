@@ -251,18 +251,16 @@ start_index.push_back(nz_counter);
       __add_similar_rows(N_rows_new, rows_lower_new, rows_upper_new, n, -1e+10, 0.0);
    }
 
-
-
    vector<Scene_SSL> mp_init_scenes;
+
    __find_init_scene(mp_init_scenes, N_cols_new, n, r_capacity, w_capacity);
-
-
+   for(int i = 0; i < n; i++){
+      ssl_pool.add_scene(mp_init_scenes[i]);
+   }
 
    __init_col_LbUb(N_cols_new, cols_lower_new, cols_upper_new, 0, 1);
 
-
-
-   start_index_new.push_back(0);
+   
    if(param.objIncludeTime){
       int time_base_row = m + n + k;
       for(int i = 0; i < n; i++){
@@ -332,9 +330,15 @@ int Master::__find_init_scene(vector<Scene_SSL>& init_scenes, int& num_cols, con
    int return_value = 1;
    init_scenes = vector<Scene_SSL>();
    num_cols = target_num;
+
+   grm->radar_num_k;
    for(int i = 0; i < target_num; i++){
-      int temp_radar_id = i / radar_capa;
-      int temp_weapon_id = i / weapon_capa;
+      //int temp_radar_id = i / radar_capa;
+      //int temp_weapon_id = i / weapon_capa;
+      int temp_radar_id = i % (grm->radar_num_k);
+      int temp_weapon_id = i % (grm->weapon_num_m);
+
+
       int temp_ssl_id = grm->cal_ssl_index(temp_radar_id, temp_weapon_id);
       Scene_SSL temp_scene(i, temp_weapon_id, temp_radar_id, grm->weapon_num_m, grm->radar_num_k);
       //temp_scene.PrintScene();
@@ -398,7 +402,7 @@ int Master::__cal_onessl_matrixAndCost(Scene_SSL temp_SSL, int& target_nnz, vect
 int Master::__add_cols_matrixAndCost(vector<Scene_SSL> all_scenes, vector<int>& add_nnz, vector<int>& add_nz_rows, vector<double>& add_nz_vals, vector<double>& add_col_costs){
    int return_value = 1;
    int scene_nums = all_scenes.size();
-   
+   add_nnz.push_back(0);
    int current_col_nums = add_nnz.size() - 1;
    int current_nnz = add_nnz[current_col_nums];
    for(int i = 0; i < scene_nums; i++){
@@ -530,12 +534,20 @@ bool Master::Solve()
          printf("Alert!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! We find a non-integer LP solution in Master Problem !!!!!!!\n");
       }
       if( solution.col_value[col] > 1 - 1e-6){
+         if(param.objIncludeTime){
+            opt_scene_indices.push_back(col - 1);
+         }
+         else{
+            opt_scene_indices.push_back(col);
+         }
+         /*
          if(col < grm->target_num_n + 1){
             opt_scene_indices.push_back(col);
          }
          else{
             opt_scene_indices.push_back(col - 1); 
          }
+         */
 
       }
       if (has_duals) cout << "; dual = " << solution.col_dual[col];
@@ -615,8 +627,8 @@ void Master::GetDualValues(vector<double> &dual)
    const HighsSolution& solution = highs.getSolution();
 
    int N_Dual_sol =  lp.num_row_;
-   printf("size : %d\n", solution.row_dual.size());
-   printf("dual size : %d\n", dual.size());
+   printf("row num of LP\t: %d\n", solution.row_dual.size());
+   printf("the size of dual\t: %d\n", dual.size());
    dual = vector<double>(N_Dual_sol, 0);
    for(int i = 0; i < N_Dual_sol; i++){
       printf("dual %d : %.2f\n", i, solution.row_dual[i]);
@@ -783,7 +795,11 @@ num_new_nz_ = nz_counter;
       indices_[i] = nz_rows[i];
       values_[i] = nz_vals[i];
    }
+
+   print_new_cols(num_new_col_, cost_, lower_, upper_, num_new_nz_, nz_starts_, indices_, values_);
+   /*
    printf("=================== ADD COLUMNS ================\n");
+   printf("----- origin ----- \n");
    printf("nz_start : ");
    for(int i = 0; i < num_new_col_; i++){
       printf("%d ", nz_starts_[i]);
@@ -802,8 +818,42 @@ num_new_nz_ = nz_counter;
       }
    printf("\n");
    }
+   */
+
    highs.addCols(num_new_col_, cost_, lower_, upper_, num_new_nz_, nz_starts_, indices_, values_);
    //return_status = highs.writeModel("New_Master.lp");
+
+   // New method to add cols
+   /*
+   int new_num_new_col_ = scene_ssls.size();
+   vector<double> vec_cost;
+   vector<double> vec_lb;
+   vector<double> vec_ub;
+   int new_num_new_nz_ = 0;
+   vector<int> vec_nz_start;
+   vector<int> vec_row_ind;
+   vector<double> vec_row_val;
+   
+   __add_cols_matrixAndCost(scene_ssls, vec_nz_start, vec_row_ind, vec_row_val, vec_cost);
+   __init_col_LbUb(new_num_new_col_, vec_lb, vec_ub, 0.0, 1.0);
+   
+   double* col_costs_ = new double[new_num_new_col_];
+   double* col_lowers_ = new double[new_num_new_col_];
+   double* col_uppers_ = new double[new_num_new_col_];
+   int* new_nz_starts_ = new int[new_num_new_col_ + 1];
+   new_num_new_nz_ = vec_nz_start[new_num_new_col_];
+   int* new_row_ind_ = new int[new_num_new_nz_];
+   double* new_row_val_ = new double[new_num_new_nz_];
+   
+   __set_vec_double_to_new(vec_cost, col_costs_);
+   __set_vec_double_to_new(vec_lb, col_lowers_);
+   __set_vec_double_to_new(vec_ub, col_uppers_);
+   __set_vec_int_to_new(vec_nz_start, new_nz_starts_);
+   __set_vec_int_to_new(vec_row_ind, new_row_ind_);
+   __set_vec_double_to_new(vec_row_val, new_row_val_);
+
+   highs.addCols(new_num_new_col_, col_costs_, col_lowers_, col_uppers_, new_num_new_nz_, new_nz_starts_, new_row_ind_, new_row_val_);
+   */
 
    return_status = highs.writeModel("After_add_Master_LP.lp");
    if(return_status != HighsStatus::kOk){
@@ -830,6 +880,94 @@ num_new_nz_ = nz_counter;
       }
    }
 }
+
+void Master::add_new_cols(std::vector<Scene_SSL> &scene_ssls){
+   int new_num_new_col_ = scene_ssls.size();
+   vector<double> vec_cost;
+   vector<double> vec_lb;
+   vector<double> vec_ub;
+   int new_num_new_nz_ = 0;
+   vector<int> vec_nz_start;
+   vector<int> vec_row_ind;
+   vector<double> vec_row_val;
+   
+   for(int i = 0; i < scene_ssls.size(); i++){
+      ssl_pool.add_scene(scene_ssls[i]);
+   }
+   
+
+   __add_cols_matrixAndCost(scene_ssls, vec_nz_start, vec_row_ind, vec_row_val, vec_cost);
+   __init_col_LbUb(new_num_new_col_, vec_lb, vec_ub, 0.0, 1.0);
+   
+   double* col_costs_ = new double[new_num_new_col_];
+   double* col_lowers_ = new double[new_num_new_col_];
+   double* col_uppers_ = new double[new_num_new_col_];
+   int* new_nz_starts_ = new int[new_num_new_col_ + 1];
+   new_num_new_nz_ = vec_nz_start[new_num_new_col_];
+   int* new_row_ind_ = new int[new_num_new_nz_];
+   double* new_row_val_ = new double[new_num_new_nz_];
+   
+   __set_vec_double_to_new(vec_cost, col_costs_);
+   __set_vec_double_to_new(vec_lb, col_lowers_);
+   __set_vec_double_to_new(vec_ub, col_uppers_);
+   __set_vec_int_to_new(vec_nz_start, new_nz_starts_);
+   __set_vec_int_to_new(vec_row_ind, new_row_ind_);
+   __set_vec_double_to_new(vec_row_val, new_row_val_);
+
+   print_new_cols(new_num_new_col_, col_costs_, col_lowers_, col_uppers_, new_num_new_nz_, new_nz_starts_, new_row_ind_, new_row_val_);
+
+   return_status = highs.addCols(new_num_new_col_, col_costs_, col_lowers_, col_uppers_, new_num_new_nz_, new_nz_starts_, new_row_ind_, new_row_val_);
+
+   if(return_status != HighsStatus::kOk){
+      printf("Add cols failed! \n");
+      exit(1);
+   }
+   
+   return_status = highs.writeModel("After_add_Master_LP.lp");
+   if(return_status != HighsStatus::kOk){
+      printf("Write Model failed! \n");
+      exit(1);
+   }
+   
+   delete[] col_costs_;
+   delete[] col_lowers_;
+   delete[] col_uppers_;
+   delete[] new_nz_starts_;
+   delete[] new_row_ind_;
+   delete[] new_row_val_;
+}
+
+
+
+void Master::print_new_cols(int new_columns_num, double* costs, double* lowers, double* uppers, int new_nz_num , int* nz_start, int* row_indices, double* row_vals){
+   printf("===========  print the info about new added columns ==========\n");
+   printf("Now add %d columns \n", new_columns_num);
+   for(int i = 0; i < new_columns_num; i++){
+      printf("Column %d with bounds: (%.2f, %.2f) and cost: %.2f\n", i, lowers[i], uppers[i], costs[i]);
+   }
+   printf("There are %d new nz vals, thay are: \n", new_nz_num);
+   printf("nz_start : ");
+   for(int i = 0; i < new_columns_num; i++){
+      printf("%d ", nz_start[i]);
+   }
+   printf("%d \n", nz_start[new_columns_num]);
+   printf("nz : \n");
+   for(int i = 0; i < new_columns_num; i++){
+      int start_index = nz_start[i];
+      int end_index = nz_start[i+1];
+      printf("col %d \n ind : \t", i);
+      for(int j = start_index; j < end_index; j++){
+         printf("%d\t", row_indices[j]);
+      }
+      printf("\n val :\t");
+      for(int j = start_index; j < end_index; j++){
+         printf("%.2f\t", row_vals[j]);
+      }
+   printf("\n");
+   }
+   printf("===========  finish printing new added columns info ==========\n");
+}
+
 
 /**
  * This function is deprecated. The math insure the new scene should not be repeated

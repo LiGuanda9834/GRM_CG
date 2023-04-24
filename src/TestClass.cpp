@@ -42,7 +42,7 @@ void TestClass::test_sp_correctness(){
     int test_size = 1;
     vector<bool> is_correct(test_size, true);
     for(int i = 0; i < test_size; i++){
-        sp->Init_test(grm, 0, &param, i);
+        sp->Init_test(grm, i, &param, 0);
         sp->print_model();
         is_correct[i] = sp->check_correctness_by_enum();
     }

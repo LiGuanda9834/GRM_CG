@@ -294,9 +294,8 @@ GRM::GRM(int instance_id){
 
         target_value = new double[target_num_n];
         for(int i = 0; i < target_num_n; i++){
-            double temp_value;
             fscanf (fin, "%lf,", &target_value[i]);
-            printf("%d value : %lf\n",i ,temp_value);
+            printf("%d value : %.2f\n",i , target_value[i]);
         }
 
         probability_matrix = new double*[ssl_num]; 
@@ -409,6 +408,7 @@ int GRM::print_model(){
         }
         printf("%.2f \n", target_value[j]);
     }
+    
     
     printf("t[s][j]\n");
     printf("(w,r))\t");

@@ -72,6 +72,7 @@ class Master {
       // This block is used to Initilze and solve master with HIGHS
       void Initialize_HIGHS();
       void AddCol(std::vector<Scene_SSL> &scene_ssls);
+      void add_new_cols(std::vector<Scene_SSL> &scene_ssls);
       bool Solve();
 
       // auxiliary methods to help MP
@@ -89,6 +90,8 @@ class Master {
 
       //print and write
       void print_current_solution();
+      void print_new_cols(int new_columns_num, double* costs, double* lowers, double* uppers,int new_nz_num, int* nz_start, int* row_indices, double* row_vals);
+
       //    Writes the active model to the file specified by filename.
       void writeModel(const std::string &name = "master.lp"){}
 
@@ -125,6 +128,12 @@ class Master {
          return false;
       }
 
+      void __set_vec_double_to_new(vector<double> vec_double, double* new_double){
+         for(int i = 0; i < vec_double.size(); i++){ new_double[i] = vec_double[i]; }
+      }
+      void __set_vec_int_to_new(vector<int> vec_int, int* new_int){
+         for(int i = 0; i < vec_int.size(); i++){ new_int[i] = vec_int[i]; }
+      }
    public:
       GRM*                 grm;        // @brief The wta model
       const AlgoParameter  &param;     // @brief the Param of the algorithm
