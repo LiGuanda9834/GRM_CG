@@ -7,6 +7,10 @@
 #include "Tree.h"
 #include "WTA.h"
 #include "AlgorithmParameter.h"
+#include "Tree.h"
+#include "Node.h"
+#include "Statistics.h"
+
 
 
 class COL
@@ -81,12 +85,17 @@ class BranchAndCut
       //Print the parameters and the result of the algorithm
       void OutputPerformanceMetrics();
 
+      void Branch(){}
+      void nodeSelect(){}
+      void updateTreePath(){}
+      void checkLPSol(){}
+
    public:
       GRM* grm;
       const AlgoParameter &parameter;
       Master master;
       Pricing pricing;
-      Tree tree;
+      Tree* tree;
 
       // @todo Current dual sol
       vector<double> dual; 

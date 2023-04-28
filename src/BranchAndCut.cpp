@@ -53,34 +53,31 @@ BranchAndCut::BranchAndCut(
 void BranchAndCut::Run() {
    printf(" --- Start Initialize the Root Note ---\n\n");
    /* create and Initialize the root node*/
-   Node root;
+   Node* root;
    /* the initial status of root is unsolved */
-   root.status = NodeStatus::Unsolved; 
-   root.lpsol = NULL;
-   root.lb = 0;
    
+   root->Init();
+
    printf(" --- Start solve the Root Note ---\n");
    // Solve the LP of the root Node
-   SolveRootNode(root);
+   SolveRootNode(*root);
+
+   tree->leaves->Append1(root);
    return;
    /* solve the leaves of branch and bound tree */
    if( !parameter.rootOnly )
    {
-      while( !tree.empty() && !TimeLimit() && !Optimal() )
+      while( tree->leaves->GetLeafNum() != 0 && !TimeLimit() && !Optimal() )
       {
-         Node node = tree.next();
-         tree.pop();
-         Solve(node);
-         if( node.status == NodeStatus::Integral || node.status == NodeStatus::Fractional )
-         {
-            globalLb = tree.updateGlobalLb();
-         }
-         if( node.status == NodeStatus::Fractional )
-         {
-            Branch(node);
-         }
+         Node* temp_node = tree->leaves->GetBest();
+         //tree.pop();
+         Branch(*temp_node);
+         nodeSelect();
+         updateTreePath();
+         Solve(*temp_node);
+         checkLPSol();
       }
-      if( tree.empty() )
+      if( tree->leaves->GetLeafNum() == 0 )
       {
          globalLb = globalUb;
       }
@@ -121,10 +118,6 @@ void BranchAndCut::SolveRootNode(Node &node)
       /* otherwise, if the root node is infeasible, then ... */
    }
    return;
-   if( node.status == NodeStatus::Fractional )
-   {
-      // Branch();
-   }
 
 }
 
@@ -138,7 +131,6 @@ void BranchAndCut::Solve(Node &node)
  * @brief master lp initial columns
  * @param : root node 
  * @return index of columns
- * @todo add cols, add rows((5b) and part of conflict cons[lazy constraint])
  */
 bool BranchAndCut::InitialColumns(
    Node          &node

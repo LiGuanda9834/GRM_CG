@@ -12,6 +12,24 @@ using std::string;
 using std::cout;
 using std::endl;
 
+
+enum BranchingStrategy{
+    MOST_INFEASIBLE,
+    LEAST_INFEASIBL,
+    PSEUDOCOST_BRANCHING,
+    STRONG_BRANCHING
+};
+typedef enum BranchingStrategy BranchingSTRA;
+
+enum NodeSelectStrategy{
+    DEPTH_FIRST,
+    BEST_FIRST,
+    BEST_FIRST_PLUNGING,
+    BEST_ESTIMATE,
+    BEST_ESTIMATE_PLUNGING
+};
+typedef enum NodeSelectStrategy NodeSelSTRA;
+
 class AlgoParameter
 {
 public:
@@ -69,7 +87,8 @@ public:
     bool depthFirst = 1;
     bool enableBranchOnSum = 0;
     double optimalityGap = 1.0e-6;
-
+    NodeSelSTRA node_select_strategy_ = BEST_FIRST;
+    BranchingSTRA branching_strategy_ = MOST_INFEASIBLE;
 
 // Debug and Infomation params
     int DEBUG_VERSION = 0;
